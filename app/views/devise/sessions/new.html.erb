@@ -1,0 +1,55 @@
+
+<div class="account-container login stacked">
+
+  <div class="content clearfix">
+
+    <h1>Sign In</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:autofill => "off"}) do |f| %>
+      <div class="login-fields">
+
+        <p>Sign in using your registered account:</p>
+
+        <% if flash[:alert] %>
+          <div class="alert alert-danger alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, :class => "login username-field", :placeholder => "Email Address", :required => "true" %>
+
+        </div> <!-- /field -->
+
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", :class => "login password-field", :placeholder => "Password", :required => "true" %>
+        </div> <!-- /password -->
+
+      </div> <!-- /login-fields -->
+
+      <div class="login-actions">
+        <% if devise_mapping.rememberable? -%>
+          <span class="login-checkbox">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, "Keep me logged in" %>
+          </span>
+        <% end -%>
+        <button class="button btn btn-primary btn-large">Sign In</button>
+      </div> <!-- .actions -->
+
+    <% end %>
+
+  </div> <!-- /content -->
+
+</div> <!-- /account-container -->
+
+
+<!-- Text Under Box -->
+<div class="login-extra">
+	Don't have an account? <%= link_to "Sign Up", new_user_registration_path %><br/>
+	Forgot <%= link_to "Password?", new_password_path(resource_name) %>
+</div> <!-- /login-extra -->
+
+

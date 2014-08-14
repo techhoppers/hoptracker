@@ -1,0 +1,42 @@
+
+<div class="account-container register stacked">
+
+  <div class="content clearfix">
+
+   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+      <h1>Change password</h1>
+
+      <div class="login-fields">
+        <div class="field">
+          <%= f.label :password, "New password" %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => "login", :placeholder => "New Password"%>
+        </div> <!-- /field -->
+
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirm new password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => "login", :placeholder => "Confirm Password" %>
+        </div> <!-- /field -->
+
+      </div> <!-- /login-fields -->
+
+      <div class="login-actions">
+
+        <button class="button btn btn-primary btn-large">Update Password</button>
+
+      </div> <!-- .actions -->
+
+    <% end %>
+
+  </div> <!-- /content -->
+
+</div> <!-- /account-container -->
+
+
+<!-- Text Under Box -->
+<div class="login-extra">
+	Already have an account? <%= link_to "Login", new_user_session_path %>
+</div> <!-- /login-extra -->
+
+
