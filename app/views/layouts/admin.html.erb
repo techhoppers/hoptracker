@@ -6,24 +6,39 @@
   <head>
     <title>Hoppers Tracker</title>
     <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800">
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "modernizr-2.5.3.min" %>
     <%= csrf_meta_tags %>
+
   </head>
+
   <body>
-
-
-
     <div id="wrapper">
 
       <div id="topbar">
 
         <div class="container">
 
+          <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+            <i class="icon-cog"></i>
+          </a>
+
           <div id="top-nav">
+            <% if current_user.is_admin %>
+              <ul>
+                <li><%= link_to "Admin", admin_projects_path %></li>
+              </ul>
+            <% end %>
+            <ul class="pull-right">
+              <li><%= link_to text_with_icon(current_user.name, "icon-user"), edit_user_registration_path(current_user) %></li>
+              <li><%= link_to text_with_icon("Settings", "icon-cog"), edit_user_registration_path(current_user) %></li>
+              <li><%= link_to text_with_icon("Logout", "icon-off"), destroy_user_session_path, :method => :delete %></li>
+            </ul>
 
           </div> <!-- /#top-nav -->
         </div> <!-- /.container -->
@@ -32,58 +47,39 @@
       <div id="header">
         <div class="container">
           <%= link_to "Hoppers Tracker", root_path, :class => "brand" %>
-          <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
-            <i class="icon-reorder"></i>
-          </a>
+         <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
+        	<i class="icon-reorder"></i>
+      	</a>
+          <div class="nav-collapse">
+            <ul id="main-nav" class="nav pull-right">
+              <li class="nav-icon active">
+                <%= link_to nav_links_with_icon("Home", "icon-home"), root_path %>
+              </li>
 
+              <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon-th"></i>
+                  <span>Projects</span>
+                </a>
+              </li>
+
+              <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon-copy"></i>
+                  <span>Users</span>
+                </a>
+              </li>
+
+            </ul>
+
+          </div> <!-- /.nav-collapse -->
 
         </div> <!-- /.container -->
 
       </div> <!-- /#header -->
       <div id="masthead"></div> <!-- /#masthead -->
-      <div id="content">
 
-        <div class="container">
-
-          <div class="row">
-
-            <div class="span5">
-              <h3>Welcome to app.</h3>
-
-              <p>You are currently signed up to the Free Trial Plan. <br /><a href="javascript:;">Upgrade your plan today</a>.</p>
-
-              <table class="table stat-table">
-                <tbody>
-                  <tr>
-                    <td class="value">789</td>
-                    <td class="full">Visits Today</td>
-                  </tr>
-                  <tr>
-                    <td class="value">634</td>
-                    <td class="full">Unique Visits</td>
-                  </tr>
-                  <tr>
-                    <td class="value">13</td>
-                    <td class="full">Pending Comments</td>
-                  </tr>
-                  <tr>
-                    <td class="value">17</td>
-                    <td class="full">Support Requests</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> <!-- /.span4 -->
-
-            <div class="span7">
-
-              <%= yield %>
-            </div> <!-- /.span8 -->
-
-          </div> <!-- /.row -->
-
-        </div> <!-- /.container -->
-      </div> <!-- /#content -->
-
+      <%= yield %>
 
     </div> <!-- /#wrapper -->
 
@@ -101,5 +97,6 @@
     </div> <!-- /#footer -->
 
     <%= javascript_include_tag "application" %>
+
   </body>
 </html>

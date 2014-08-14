@@ -1,7 +1,13 @@
 class AdminController < ApplicationController
   before_filter :check_authorization
+  
+  layout "admin"
+  
+  def projects
+    
+  end
 
-  def index
+  def users
     
   end
 
@@ -10,7 +16,7 @@ class AdminController < ApplicationController
   private
 
   def check_authorization
-    if current_user.is_admin
+    unless current_user.is_admin
        render_401
     end
   end

@@ -5,231 +5,133 @@
 
     <div class="row">
 
-      <div class="tabbable">
-
-        <div class="span3">
-
-          <ul class="nav nav-tabs nav-stacked">
-
-            <li class="active">
-              <a href="#tab2" data-toggle="tab">
-                <i class="icon-user"></i> Account Information
-                <i class="icon-chevron-right"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#tab3" data-toggle="tab">
-                <i class="icon-remove"></i> Delete Account
-                <i class="icon-chevron-right"></i>
-              </a>
-            </li>
-          </ul>
-
-        </div> <!-- /.span3 -->
 
 
-        <div class="span9">
+      <div class="span12">
 
-          <div class="tab-content">
+        <h2>Edit Account Information</h2>
 
-            <div class="tab-pane active" id="tab1">
+       
 
-              <h2>Edit Account Information</h2>
+        <br />
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal",:multipart => true}) do |f| %>
+          <fieldset>
 
-              <p>You can update your account information here.</p>
-
-              <br />
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal",:multipart => true}) do |f| %>
-                <fieldset>
-
-                  <% if @user.errors.any? %>
-                    <div class="alert alert-danger alert-error">
-                      <a href="#" class="close" data-dismiss="alert">&times;</a>
-                      <ul>
-                        <% @user.errors.full_messages.uniq.each do |message| %>
-                          <li> <%= message %></li>
-                        <% end %>
-                      </ul>
-                    </div>
+            <% if @user.errors.any? %>
+              <div class="alert alert-danger alert-error">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <ul>
+                  <% @user.errors.full_messages.uniq.each do |message| %>
+                    <li> <%= message %></li>
                   <% end %>
-                  <% if @user.avatar %>
-                    <div class="control-group">
-                      <div class="controls">
-                        <a class="ui-lightbox" href="<%= @user.avatar.url %>">
-                          <%= image_tag @user.avatar.url(:medium) %>
-                        </a>
-                      </div> <!-- /controls -->
-                    </div> <!-- /control-group -->
-                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <h3>Profile Picture</h3>
+            <hr />
+            <% if @user.avatar %>
+              <div class="control-group">
+                <div class="controls">
+                  <a class="ui-lightbox" href="<%= @user.avatar.url %>">
+                    <%= image_tag @user.avatar.url(:medium) %>
+                  </a>
+                </div> <!-- /controls -->
+              </div> <!-- /control-group -->
+            <% end %>
 
-                  <div class="control-group">
-                    <%= f.label :avatar, "Profile Picture", :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.file_field :avatar %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
+            <div class="control-group">
+              
+              <div class="controls">
+                <%= f.file_field :avatar %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
-
-                  <div class="control-group">
-                    <%= f.label :first_name, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.text_field :first_name, :autofocus => true, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-
-                  <div class="control-group">
-                    <%= f.label :last_name, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.text_field :last_name, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
+            <h3>Profile Settings</h3>
+            <hr />
+            <div class="control-group">
+              <%= f.label :first_name, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :first_name, :autofocus => true, :class => "input-large", :required => true %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
 
-                  <div class="control-group">
-                    <%= f.label :email, "Email Address", :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.email_field :email, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-                  <div class="control-group">
-                    <%= f.label :city, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.text_field :city, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-                  <div class="control-group">
-                    <%= f.label :state, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.text_field :state, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-                  <div class="control-group">
-                    <%= f.label :country, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.text_field :country, :class => "input-large" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
+            <div class="control-group">
+              <%= f.label :last_name, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :last_name, :class => "input-large", :required => true %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
 
-                  <br/><br/>
+            <div class="control-group">
+              <%= f.label :email, "Email Address", :class => "control-label" %>
+              <div class="controls">
+                <%= f.email_field :email, :class => "input-large", :required => true %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
-                  <div class="control-group">
-                    <%= f.label :password, :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.password_field :password, :class => "input-large", :autocomplete => "off" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
+            <div class="control-group">
+              <%= f.label :city, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :city, :class => "input-large" %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
+            <div class="control-group">
+              <%= f.label :state, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :state, :class => "input-large" %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
-                  <div class="control-group">
-                    <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.password_field :password_confirmation, :class => "input-large", :autocomplete => "off" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-                  <div class="control-group">
-                    <%= f.label :current_password, "Current Password", :class => "control-label" %>
-                    <div class="controls">
-                      <%= f.password_field :current_password, :class => "input-large", :autocomplete => "off" %>
-                    </div> <!-- /controls -->
-                  </div> <!-- /control-group -->
-
-
-
-                  <br/>
-
-
-                  <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-large">Save Settings</button>
-                    <a class="btn btn-large" onclick="window.location.href='<%= root_path %>'">Cancel</a>
-                  </div> <!-- /form-actions -->
-                </fieldset>
-              <% end %>
-
-            </div> <!-- /#tab1 -->
+            <div class="control-group">
+              <%= f.label :country, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :country, :class => "input-large" %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
 
-            <div class="tab-pane" id="tab2">
+            <h3>Profile Password</h3>
+            <hr />
 
-              <h2>Tab #2</h2>
-
-              <p>
-                Aenean interdum faucibus urna, et laoreet dui fringilla eu. In sagittis tempor justo, id auctor risus vestibulum sed. Nulla facilisi. Phasellus sollicitudin interdum lacus, tincidunt rhoncus augue porta et. Cras molestie bibendum sem, nec feugiat mauris consectetur vel. Nunc tellus sapien, ornare at ullamcorper sed, tempor ut ipsum. Nunc ac purus in quam pellentesque aliquam eget sed sapien. Curabitur sed nulla libero, eget pellentesque ante. Etiam condimentum pellentesque tincidunt. Suspendisse non odio mauris, eget tempor quam. Curabitur eget lectus quis metus tempor adipiscing non ut nisi. Curabitur sed neque tellus.
-              </p>
-
-              <p>
-                Vestibulum elementum tincidunt est ac placerat. Curabitur nulla sapien, sollicitudin sed cursus at, accumsan vel lorem. Etiam luctus vulputate suscipit. Nulla cursus enim in urna vestibulum auctor. Maecenas ultrices iaculis enim vitae ornare. Morbi arcu lorem, tincidunt vitae aliquam non, venenatis quis nibh. Pellentesque ornare leo sed lectus malesuada imperdiet. Aenean rhoncus, nulla non laoreet lacinia, nisl orci facilisis dolor, in rhoncus mauris odio nec ipsum. Phasellus pellentesque varius odio nec faucibus. Phasellus a lorem quis ipsum lobortis tincidunt in ut quam.
-              </p>
-
-              <p>
-                Cras et nisi ac nulla dictum vulputate. Nam laoreet sapien at mi interdum sed molestie quam venenatis. Fusce lacinia malesuada erat, id mollis orci lobortis nec. Quisque at nibh nunc. Aliquam quam diam, iaculis id sollicitudin sit amet, laoreet vel purus. Integer et lectus eget arcu pharetra blandit. Vestibulum id vulputate eros. Vivamus non erat urna. Donec consectetur scelerisque semper. Proin enim arcu, sodales a congue ac, fringilla eu odio. Praesent laoreet nunc eu metus ullamcorper vitae lobortis leo interdum. Morbi feugiat ultrices diam sed auctor. Donec a dolor sit amet lectus posuere cursus vitae quis nulla. Morbi sed mi quis tortor tristique tincidunt ac a elit. Donec enim nisl, lobortis eget vehicula eget, auctor eget enim.
-              </p>
-            </div> <!-- /#tab2 -->
+            <div class="control-group">
+              <%= f.label :password, :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :password, :class => "input-large", :autocomplete => "off" %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
 
-            <div class="tab-pane" id="tab3">
+            <div class="control-group">
+              <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :password_confirmation, :class => "input-large", :autocomplete => "off" %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
-              <h2>Tab #3</h2>
-
-              <p>
-                Aenean interdum faucibus urna, et laoreet dui fringilla eu. In sagittis tempor justo, id auctor risus vestibulum sed. Nulla facilisi. Phasellus sollicitudin interdum lacus, tincidunt rhoncus augue porta et. Cras molestie bibendum sem, nec feugiat mauris consectetur vel. Nunc tellus sapien, ornare at ullamcorper sed, tempor ut ipsum. Nunc ac purus in quam pellentesque aliquam eget sed sapien. Curabitur sed nulla libero, eget pellentesque ante. Etiam condimentum pellentesque tincidunt. Suspendisse non odio mauris, eget tempor quam. Curabitur eget lectus quis metus tempor adipiscing non ut nisi. Curabitur sed neque tellus.
-              </p>
-
-              <p>
-                Vestibulum elementum tincidunt est ac placerat. Curabitur nulla sapien, sollicitudin sed cursus at, accumsan vel lorem. Etiam luctus vulputate suscipit. Nulla cursus enim in urna vestibulum auctor. Maecenas ultrices iaculis enim vitae ornare. Morbi arcu lorem, tincidunt vitae aliquam non, venenatis quis nibh. Pellentesque ornare leo sed lectus malesuada imperdiet. Aenean rhoncus, nulla non laoreet lacinia, nisl orci facilisis dolor, in rhoncus mauris odio nec ipsum. Phasellus pellentesque varius odio nec faucibus. Phasellus a lorem quis ipsum lobortis tincidunt in ut quam.
-              </p>
-
-              <p>
-                Cras et nisi ac nulla dictum vulputate. Nam laoreet sapien at mi interdum sed molestie quam venenatis. Fusce lacinia malesuada erat, id mollis orci lobortis nec. Quisque at nibh nunc. Aliquam quam diam, iaculis id sollicitudin sit amet, laoreet vel purus. Integer et lectus eget arcu pharetra blandit. Vestibulum id vulputate eros. Vivamus non erat urna. Donec consectetur scelerisque semper. Proin enim arcu, sodales a congue ac, fringilla eu odio. Praesent laoreet nunc eu metus ullamcorper vitae lobortis leo interdum. Morbi feugiat ultrices diam sed auctor. Donec a dolor sit amet lectus posuere cursus vitae quis nulla. Morbi sed mi quis tortor tristique tincidunt ac a elit. Donec enim nisl, lobortis eget vehicula eget, auctor eget enim.
-              </p>
-            </div> <!-- /#tab3 -->
+            <div class="control-group">
+              <%= f.label :current_password, "Current Password", :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :current_password, :class => "input-large", :autocomplete => "off", :required => true %>
+              </div> <!-- /controls -->
+            </div> <!-- /control-group -->
 
 
-            <div class="tab-pane" id="tab4">
 
-              <h2>Tab #4</h2>
-
-              <p>
-                Aenean interdum faucibus urna, et laoreet dui fringilla eu. In sagittis tempor justo, id auctor risus vestibulum sed. Nulla facilisi. Phasellus sollicitudin interdum lacus, tincidunt rhoncus augue porta et. Cras molestie bibendum sem, nec feugiat mauris consectetur vel. Nunc tellus sapien, ornare at ullamcorper sed, tempor ut ipsum. Nunc ac purus in quam pellentesque aliquam eget sed sapien. Curabitur sed nulla libero, eget pellentesque ante. Etiam condimentum pellentesque tincidunt. Suspendisse non odio mauris, eget tempor quam. Curabitur eget lectus quis metus tempor adipiscing non ut nisi. Curabitur sed neque tellus.
-              </p>
-
-              <p>
-                Vestibulum elementum tincidunt est ac placerat. Curabitur nulla sapien, sollicitudin sed cursus at, accumsan vel lorem. Etiam luctus vulputate suscipit. Nulla cursus enim in urna vestibulum auctor. Maecenas ultrices iaculis enim vitae ornare. Morbi arcu lorem, tincidunt vitae aliquam non, venenatis quis nibh. Pellentesque ornare leo sed lectus malesuada imperdiet. Aenean rhoncus, nulla non laoreet lacinia, nisl orci facilisis dolor, in rhoncus mauris odio nec ipsum. Phasellus pellentesque varius odio nec faucibus. Phasellus a lorem quis ipsum lobortis tincidunt in ut quam.
-              </p>
-
-              <p>
-                Cras et nisi ac nulla dictum vulputate. Nam laoreet sapien at mi interdum sed molestie quam venenatis. Fusce lacinia malesuada erat, id mollis orci lobortis nec. Quisque at nibh nunc. Aliquam quam diam, iaculis id sollicitudin sit amet, laoreet vel purus. Integer et lectus eget arcu pharetra blandit. Vestibulum id vulputate eros. Vivamus non erat urna. Donec consectetur scelerisque semper. Proin enim arcu, sodales a congue ac, fringilla eu odio. Praesent laoreet nunc eu metus ullamcorper vitae lobortis leo interdum. Morbi feugiat ultrices diam sed auctor. Donec a dolor sit amet lectus posuere cursus vitae quis nulla. Morbi sed mi quis tortor tristique tincidunt ac a elit. Donec enim nisl, lobortis eget vehicula eget, auctor eget enim.
-              </p>
-            </div> <!-- /#tab4 -->
+            <br/>
 
 
-            <div class="tab-pane" id="tab5">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-large">Save Settings</button>
+              <a class="btn btn-large" onclick="window.location.href='<%= root_path %>'">Cancel</a>
+              <%= link_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "btn btn-danger btn-large" %>
+            </div> <!-- /form-actions -->
+          </fieldset>
+        <% end %>
 
-              <h2>Tab #5</h2>
-
-              <p>
-                Aenean interdum faucibus urna, et laoreet dui fringilla eu. In sagittis tempor justo, id auctor risus vestibulum sed. Nulla facilisi. Phasellus sollicitudin interdum lacus, tincidunt rhoncus augue porta et. Cras molestie bibendum sem, nec feugiat mauris consectetur vel. Nunc tellus sapien, ornare at ullamcorper sed, tempor ut ipsum. Nunc ac purus in quam pellentesque aliquam eget sed sapien. Curabitur sed nulla libero, eget pellentesque ante. Etiam condimentum pellentesque tincidunt. Suspendisse non odio mauris, eget tempor quam. Curabitur eget lectus quis metus tempor adipiscing non ut nisi. Curabitur sed neque tellus.
-              </p>
-
-              <p>
-                Vestibulum elementum tincidunt est ac placerat. Curabitur nulla sapien, sollicitudin sed cursus at, accumsan vel lorem. Etiam luctus vulputate suscipit. Nulla cursus enim in urna vestibulum auctor. Maecenas ultrices iaculis enim vitae ornare. Morbi arcu lorem, tincidunt vitae aliquam non, venenatis quis nibh. Pellentesque ornare leo sed lectus malesuada imperdiet. Aenean rhoncus, nulla non laoreet lacinia, nisl orci facilisis dolor, in rhoncus mauris odio nec ipsum. Phasellus pellentesque varius odio nec faucibus. Phasellus a lorem quis ipsum lobortis tincidunt in ut quam.
-              </p>
-
-              <p>
-                Cras et nisi ac nulla dictum vulputate. Nam laoreet sapien at mi interdum sed molestie quam venenatis. Fusce lacinia malesuada erat, id mollis orci lobortis nec. Quisque at nibh nunc. Aliquam quam diam, iaculis id sollicitudin sit amet, laoreet vel purus. Integer et lectus eget arcu pharetra blandit. Vestibulum id vulputate eros. Vivamus non erat urna. Donec consectetur scelerisque semper. Proin enim arcu, sodales a congue ac, fringilla eu odio. Praesent laoreet nunc eu metus ullamcorper vitae lobortis leo interdum. Morbi feugiat ultrices diam sed auctor. Donec a dolor sit amet lectus posuere cursus vitae quis nulla. Morbi sed mi quis tortor tristique tincidunt ac a elit. Donec enim nisl, lobortis eget vehicula eget, auctor eget enim.
-              </p>
-            </div> <!-- /#tab5 -->
-
-          </div> <!-- /.tab-content -->
-
-        </div> <!-- /.span9 -->
-
-      </div> <!-- /.tabbable -->
+      </div> <!-- /.span9 -->
 
     </div> <!-- /.row -->
 
