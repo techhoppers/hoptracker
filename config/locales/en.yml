@@ -2,4 +2,93 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  common:
+    submit: Submit
+    cancel: Cancel
+    save: Save
+    update: Update
+    settings: Settings
+    create: Create
+    view_all: View All
+    calendar: Calendar
+    action: Action
+    edit: Edit
+    delete: Delete
+  account:
+    email: Email Address
+    profile_picture: Profile Picture
+    profile_settings: Profile Settings
+    profile_password: Profile Password
+    first_name: First Name
+    last_name: Last Name
+    name: Name
+    city: City
+    state: State
+    country: Country
+    primary_phone: Primary Phone
+    home_phone: Home Phone
+    work_phone: Work Phone
+    fax: Fax
+    username: Username
+  authentication:
+    login:
+      sign_in: Sign In
+      sign_in_description: Sign in using your registered account
+      keep_logged_in:  Keep me logged in
+      no_account: Don't have an account?
+      account_exists: Already have an account?
+      forgot_password: Forgot Password?
+      send_password: Send Password
+      update_password: Update Password
+      change_password: Change Password
+      logout: Logout
+    signup:
+      sign_up: Sign Up
+      create_account: Create Account
+      mandatory_text: All fields are mandatory
+      register: Register
+      edit_account: Edit Account Information
+      delete_account: Delete Account
+  confirmation:
+     is_sure: Are you sure?
+  navigation:
+    projects: Projects
+    issues: Issues
+    create_project: Create Project
+    wiki: Wiki
+    dashboard: Dashboard
+    team: Team
+    roles: Roles
+  projects:
+    new_project: Create New Project
+    title: Title
+    code: Code
+    description: Description
+    status: Status
+    create_member: Create Member
+    project_members: Project Members
+    created_by: Created By
+    remove_member: Remove project member
+    member_deletion_success: Member has been removed from project successfully
+    member_deletion_failed: Sorry! There was an error while deleting this member.
+    wrong_username: The username you have specified doesn't exists
+    member_creation_successfull: Member has been created successfully!
+    create_success: Project has been created successfully!    
+    statuses:
+      in_progress: In Progress
+      disabled: Inactive
+      closed: Closed
+  roles:
+    empty_roles: No roles are defined for this project yet!
+    project_roles: Project Roles
+    role: Role
+    select_role: Select Role
+    role_creation_successfull: Role created successfully!
+    role_creation_failed: Role creation failed! Please try again
+    role_deletion_success: Role has been removed successfully!
+    role_deletion_failed: Sorry! There is an error removing this role. Please try again!
+
+
+
+
+

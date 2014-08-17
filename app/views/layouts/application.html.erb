@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!-- [if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!-- [if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!-- [if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- [if gt IE 8]><!--> <html class="no-js" lang="en"> <!-- <![endif]-->
+
   <head>
     <title>Hoppers Tracker</title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800"/>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "modernizr-2.5.3.min" %>
     <%= csrf_meta_tags %>
@@ -35,21 +33,21 @@
               </ul>
             <% end %>
             <ul class="pull-right">
-              <li><%= link_to text_with_icon(current_user.name, "icon-user"), edit_user_registration_path(current_user) %></li>
-              <li><%= link_to text_with_icon("Settings", "icon-cog"), edit_user_registration_path(current_user) %></li>
-              <li><%= link_to text_with_icon("Logout", "icon-off"), destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to text_with_icon(current_user.name, "icon-user"), user_path(current_user) %></li>
+              <li><%= link_to text_with_icon(t(:settings, :scope => [:common]), "icon-cog"), edit_user_registration_path(current_user) %></li>
+              <li><%= link_to text_with_icon(t(:logout, :scope => [:authentication, :login]), "icon-off"), destroy_user_session_path, :method => :delete %></li>
             </ul>
 
-          </div> <!-- /#top-nav -->
-        </div> <!-- /.container -->
-      </div> <!-- /#topbar -->
+          </div> <%#= /#top-nav %>
+        </div> <%#= /.container %>
+      </div> <%#= /#topbar %>
 
       <div id="header">
         <div class="container">
           <%= link_to "Hoppers Tracker", root_path, :class => "brand" %>
-         <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
-        	<i class="icon-reorder"></i>
-      	</a>
+          <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
+            <i class="icon-reorder"></i>
+          </a>
           <div class="nav-collapse">
             <ul id="main-nav" class="nav pull-right">
               <li class="nav-icon active">
@@ -59,15 +57,24 @@
               <li class="dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-th"></i>
-                  <span>Projects</span>
+                  <span><%= t(:projects, :scope => [:navigation]) %></span>
                   <b class="caret"></b>
                 </a>
+                <ul class="dropdown-menu">
+                  <% current_user.fetch_projects.each do |project| %>
+                    <li><%= show_project_link_with_icon(project) %></li>
+                  <% end %>
+                  <li class="divider"></li>
+                  <li><%= link_to nav_links_with_icon(t(:view_all, :scope => [:common]), "icon-list"), projects_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to nav_links_with_icon(t(:create_project, :scope => [:navigation]), "icon-plus"), new_project_path %></li>
+                </ul>
               </li>
 
               <li class="dropdown">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="icon-copy"></i>
-                  <span>Issues</span>
+                  <span><%= t(:issues, :scope => [:navigation]) %></span>
                   <b class="caret"></b>
                 </a>
               </li>
@@ -81,29 +88,29 @@
               </li>
             </ul>
 
-          </div> <!-- /.nav-collapse -->
+          </div> <%#= /.nav-collapse %>
 
-        </div> <!-- /.container -->
+        </div> <%#= /.container %>
 
-      </div> <!-- /#header -->
-      <div id="masthead"></div> <!-- /#masthead -->
-      
+      </div> <%#= /#header %>
+      <div id="masthead"></div> <%#= /#masthead %>
+
       <%= yield %>
 
-    </div> <!-- /#wrapper -->
+    </div> <%#= /#wrapper %>
 
     <div id="footer">
       <div class="container">
         <div class="row">
           <div class="span6">
             © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
-          </div> <!-- /span6 -->
+          </div> <%#= /span6 %>
           <div id="builtby" class="span6">
             <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
-          </div> <!-- /.span6 -->
-        </div> <!-- /row -->
-      </div> <!-- /container -->
-    </div> <!-- /#footer -->
+          </div> <%#= /.span6 %>
+        </div> <%#= /row %>
+      </div> <%#= /container %>
+    </div> <%#= /#footer %>
 
     <%= javascript_include_tag "application" %>
 

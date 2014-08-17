@@ -3,11 +3,11 @@
 
   <div class="content clearfix">
 
-    <h1>Sign In</h1>
+    <h1><%= t(:sign_in, :scope => [:authentication, :login]) %></h1>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:autofill => "off"}) do |f| %>
       <div class="login-fields">
 
-        <p>Sign in using your registered account:</p>
+        <p><%= t(:sign_in_description, :scope => [:authentication, :login]) %>:</p>
 
         <% if flash[:alert] %>
           <div class="alert alert-danger alert-error">
@@ -17,8 +17,8 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, :class => "login username-field", :placeholder => "Email Address", :required => "true" %>
+          <%= f.label :username %>
+          <%= f.text_field :username, autofocus: true, :class => "login username-field", :placeholder => "Username", :required => "true" %>
 
         </div> <!-- /field -->
 
@@ -33,10 +33,10 @@
         <% if devise_mapping.rememberable? -%>
           <span class="login-checkbox">
             <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, "Keep me logged in" %>
+            <%= f.label :remember_me, t(:keep_logged_in, :scope => [:authentication, :login]) %>
           </span>
         <% end -%>
-        <button class="button btn btn-primary btn-large">Sign In</button>
+        <button class="button btn btn-primary btn-large"><%= t(:sign_in, :scope => [:authentication, :login]) %></button>
       </div> <!-- .actions -->
 
     <% end %>
@@ -48,8 +48,8 @@
 
 <!-- Text Under Box -->
 <div class="login-extra">
-	Don't have an account? <%= link_to "Sign Up", new_user_registration_path %><br/>
-	Forgot <%= link_to "Password?", new_password_path(resource_name) %>
+	<%= t(:no_account, :scope => [:authentication, :login]) %> <%= link_to t(:sign_up, :scope => [:authentication, :signup]), new_user_registration_path %><br/>
+        <%= link_to t(:forgot_password, :scope => [:authentication, :login]), new_password_path(resource_name) %>
 </div> <!-- /login-extra -->
 
 

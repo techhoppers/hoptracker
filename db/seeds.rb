@@ -5,6 +5,7 @@ user = User.new
 user.first_name = "Hoppers"
 user.last_name = "Admin"
 user.is_admin = true
+user.username = "admin"
 user.email = 'admin@techhoppers.com'
 user.password = 'Way4admin*'
 user.password_confirmation = 'Way4admin*'

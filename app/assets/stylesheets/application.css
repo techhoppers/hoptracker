@@ -1638,10 +1638,9 @@ Gallery
   border-radius: 4px;
 }
 .stacked:after,
-.gallery-container li :after,
+.gallery-container li div:after,
 .stacked:before,
-.gallery-container li :before {
-  content: '';
+.gallery-container li div:before {
   position: absolute;
   display: block;
   height: 1px;
@@ -1664,13 +1663,13 @@ Gallery
 .preview {
   position: absolute;
   top: 7px;
-  left: 7px;
+  left: 20px;
   z-index: 20;
   display: none;
   width: 184px;
   height: 120px;
   background-color: rgba(0, 0, 0, 0.65);
-  background-image: url(../img/gallery/zoom.png);
+  background-image: url(lightbox/zoom.png);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   -webkit-border-radius: 3px;
@@ -1817,7 +1816,7 @@ Layout: Header
 }
 #header .brand {
   position: relative;
-  top: 24px;
+  top: 30px;
   display: block;
   overflow: hidden;
   width: 280px;
@@ -2042,6 +2041,7 @@ Layout: Content
 #content {
   margin-top: 3em;
   margin-bottom: 4em;
+  min-height: 350px;
 }
 #content .row {
   margin-top: 5em;
@@ -2326,4 +2326,18 @@ select, input[type="file"]{
 .table_form tr td:first-child {
     text-align: right;
     font-weight: bold;
+}
+
+.input-largest{
+    width: 60%;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.gallery-close{
+    right:-16px;
+    top: -16px;
+    position: absolute;
 }

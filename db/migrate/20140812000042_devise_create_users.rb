@@ -4,12 +4,17 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       ## Database authenticatable
+      t.string :username, :null => false, :default => ""
       t.string :email, :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
       t.string :city
       t.string :state
       t.string :country
       t.boolean :is_admin, :default => false
+      t.string :primary_phone
+      t.string :home_phone
+      t.string :work_phone
+      t.string :fax
 
       ## Recoverable
       t.string   :reset_password_token
@@ -39,7 +44,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
+    add_index :users, :username, :unique => true
+    add_index :users, :first_name
+    add_index :users, :last_name
     add_index :users, :email, :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   unique: true

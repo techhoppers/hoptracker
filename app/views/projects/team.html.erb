@@ -1,0 +1,46 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2><%= t(:project_members, :scope => [:projects]) %></h2>
+        <br />
+        <hr />
+        <%= form_tag(create_member_project_path(@project),  :class => "form-horizontal") do %>
+          <div class="control-group">
+            <%= label_tag :create_member, t(:create_member, :scope => [:projects]), :class => "control-label" %>
+            <div class="controls">
+              <%= text_field_tag :username, "",:class => "input-large", :required => true, :placeholder => t(:username, :scope => [:account]) %>
+              <%= select_tag :role, options_from_collection_for_select(@project_roles, "id", "role"),:class => "input-large", :prompt => t(:select_role, :scope => [:roles]) %>
+              <button type="submit" class="btn btn-primary"><%= t(:create, :scope => [:common]) %></button>
+            </div> <%#= controls %>
+          </div> <%#= control-group %>
+
+        <% end %>
+
+        <hr />
+        <ul class="gallery-container">
+          <% @project_users.each do |project_user|
+            user = project_user.user
+            project_role = project_user.project_role
+            roles = @project.roles_for_in_place
+
+          %>
+
+            <li>
+              <div>
+                <a class="gallery-close msgbox-confirm" href="#" data-url="<%= delete_member_project_path(@project, :project_user_id => project_user.id) %>" title="<%= t(:remove_member, :scope => [:projects]) %>"><%= image_tag("close.png") %></a>
+                <a class="ui-lightbox" href="<%=  user.avatar.url %>">
+                  <%= image_tag user.avatar.url(:medium) %>
+                </a>
+              </div>
+              <br />
+              <strong><%= link_to user.name, user_path(user) %></strong> <br />
+              <a data-name="role" data-value="<%= project_user.project_role_id %>" data-source="<%= roles.to_json %>" data-pk="<%= project_user.id %>" data-type="select" href="#" class="editable editable-click" data-url="<%= update_member_project_path(@project) %>" data-mode="popup"><%= project_role.role %></a>
+            </li>
+          <% end %>
+        </ul>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

@@ -1,0 +1,56 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span6">
+
+        <table class="table profile_info">
+          <tbody>
+            <tr>
+              <td><h2><%= @user.name %></h2></td>
+              <td><a class="ui-lightbox" href="<%= @user.avatar.url %>">
+                <%= image_tag @user.avatar.url(:medium) %>
+              </a></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:username, :scope => [:account]) %></strong></td>
+              <td><%= @user.username %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:email, :scope => [:account]) %></strong></td>
+              <td><%= @user.email %></td>
+            </tr>
+             <tr>
+              <td><strong><%= t(:primary_phone, :scope => [:account]) %></strong></td>
+              <td><%= @user.primary_phone || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:home_phone, :scope => [:account]) %></strong></td>
+              <td><%= @user.home_phone || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:work_phone, :scope => [:account]) %></strong></td>
+              <td><%= @user.work_phone || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:fax, :scope => [:account]) %></strong></td>
+              <td><%= @user.fax || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:city, :scope => [:account]) %></strong></td>
+              <td><%= @user.city || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:state, :scope => [:account]) %></strong></td>
+              <td><%= @user.state || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:country, :scope => [:account]) %></strong></td>
+              <td><%= @user.country || "N/A" %></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

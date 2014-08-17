@@ -15,6 +15,8 @@
 //= require jquery-ui.min
 //= require jquery.ui.touch-punch.min
 //= require bootstrap.min
+//= require bootstrap-editable.min
+//= require trumbowyg.min
 //= require theme
 //= require charts
 //= require excanvas.min
@@ -23,12 +25,95 @@
 //= require jquery.flot.orderBars
 //= require jquery.flot.tooltip.min
 //= require jquery.flot.resize
+//= require jquery.hoverintent.min
+//= require jquery.lightbox
+//= require msgGrowl
+//= require jquery.msgbox.min
 //= require line
 //= require donut
+
 $(function () {
 
-	Theme.init ();
-        $('[data-toggle="tooltip"]').tooltip();
+    Theme.init ();
+    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.ajaxOptions = {
+        type: "PUT"
+    };
+    
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.textEditor').trumbowyg();
+   
+    $('.editable').editable({
+        
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg; //msg will be shown in editable form
+        }
+    });
+
+    $(document).on('click', '.msgbox-confirm', function (e) {
+        var url = $(this).attr("data-url");
+        $.msgbox("Are you sure that you want to permanently remove the selected item?", {
+            type: "confirm",
+            buttons : [
+            {
+                type: "submit",
+                value: "Yes"
+            },
+
+            {
+                type: "submit",
+                value: "No"
+            },
+
+            {
+                type: "cancel",
+                value: "Cancel"
+            }
+            ]
+        }, function(result) {
+            if(result == "Yes"){
+                window.location.href = url;
+            }
+        });
+    });
+
+    $('.gallery-container > li').hoverIntent({
+        over: showPreview,
+        timeout: 500,
+        out: hidePreview,
+        sensitivity: 4
+    });
+
+    function showPreview () {
+        $(this).find ('.preview').fadeIn ();
+    }
+
+    function hidePreview () {
+        $(this).find ('.preview').fadeOut ();
+    }
+
+    setTimeout (function () {
+        $('.gallery-container > li').each (function () {
+            var preview, img, width, height;
+
+            preview = $(this).find ('.preview');
+            img = $(this).find ('img');
+
+            width = img.width ();
+            height = img.height ();
+
+            preview.css ({
+                width: width
+            });
+            preview.css ({
+                height: height
+            });
+
+            preview.addClass ('ui-lightbox');
+        });
+    }, 500);
+	
         
 
 });

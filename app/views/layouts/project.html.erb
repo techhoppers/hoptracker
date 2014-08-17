@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- [if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!-- [if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!-- [if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- [if gt IE 8]><!--> <html class="no-js" lang="en"> <!-- <![endif]-->
+
+  <head>
+    <title>Hoppers Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800"/>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "modernizr-2.5.3.min" %>
+    <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+    <div id="wrapper">
+
+      <div id="topbar">
+
+        <div class="container">
+
+          <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+            <i class="icon-cog"></i>
+          </a>
+
+          <div id="top-nav">
+            <% if current_user.is_admin %>
+              <ul>
+                <li><%= link_to "Admin", admin_projects_path %></li>
+              </ul>
+            <% end %>
+            <ul class="pull-right">
+              <li><%= link_to text_with_icon(current_user.name, "icon-user"), user_path(current_user) %></li>
+              <li><%= link_to text_with_icon(t(:settings, :scope => [:common]), "icon-cog"), edit_user_registration_path(current_user) %></li>
+              <li><%= link_to text_with_icon(t(:logout, :scope => [:authentication, :login]), "icon-off"), destroy_user_session_path, :method => :delete %></li>
+            </ul>
+
+          </div> <%#= /#top-nav %>
+        </div> <%#= /.container %>
+      </div> <%#= /#topbar %>
+
+      <div id="header">
+        <div class="container">
+          <%= link_to "Hoppers Tracker", root_path, :class => "brand" %>
+          <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
+            <i class="icon-reorder"></i>
+          </a>
+          <div class="nav-collapse">
+            <ul id="main-nav" class="nav pull-right">
+              <li class="nav-icon">
+                <%= link_to nav_links_with_icon("Home", "icon-home"), root_path %>
+              </li>
+              <li class="<%= @tab == :show ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:dashboard, :scope => [:navigation]), "icon-leaf"), project_path(@project) %>
+              </li>
+              <li class="<%= @tab == :roles ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:roles, :scope => [:navigation]), "icon-certificate"), project_roles_path(@project) %>
+              </li>
+              <li class="<%= @tab == :team ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:team, :scope => [:navigation]), "icon-user"), team_project_path(@project) %>
+              </li>
+              <li>
+                <%= link_to nav_links_with_icon(t(:issues, :scope => [:navigation]), "icon-tasks") %>
+              </li>
+              <li>
+                <%= link_to nav_links_with_icon(t(:wiki, :scope => [:navigation]), "icon-book") %>
+              </li>
+            </ul>
+
+          </div> <%#= /.nav-collapse %>
+
+        </div> <%#= /.container %>
+
+      </div> <%#= /#header %>
+      <div id="masthead"></div> <%#= /#masthead %>
+
+      <%= yield %>
+
+    </div> <%#= /#wrapper %>
+
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
+          </div> <%#= /span6 %>
+          <div id="builtby" class="span6">
+            <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
+          </div> <%#= /.span6 %>
+        </div> <%#= /row %>
+      </div> <%#= /container %>
+    </div> <%#= /#footer %>
+
+    <%= javascript_include_tag "application" %>
+   
+  </body>
+</html>

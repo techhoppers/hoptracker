@@ -4,6 +4,17 @@ IssueTracker::Application.routes.draw do
 
   resources :users, :controller => "users" do
     get 'delete', :on => :collection
+    get 'show', :on => :member
+  end
+
+  resources :projects do
+    get 'team', :on => :member
+    post 'create_member', :on => :member
+    get 'delete_member', :on => :member
+    put 'update_member', :on => :member
+    resources :roles do
+      get 'delete', :on => :member
+    end
   end
    
   # Admin Urls

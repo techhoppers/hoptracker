@@ -1,0 +1,48 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+
+        <h2><%= t(:new_project, :scope => [:projects]) %></h2>
+        <br />
+        <%= form_for(@project, :url => projects_path, :html => { :method => :post, :class => "form-horizontal"}) do |f| %>
+          <fieldset>
+
+
+            <hr />
+            <div class="control-group">
+              <%= f.label :title, t(:title, :scope => [:projects]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :title, :class => "input-largest", :required => true %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+
+            <div class="control-group">
+              <%= f.label :code, t(:code, :scope => [:projects]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :code, :class => "input-largest", :required => true %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+
+            <div class="control-group">
+              <%= f.label :description, t(:description, :scope => [:projects]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_area :description, :class => "textEditor" %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+            <br/>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-large"><%= t(:create, :scope => [:common]) %></button>
+              <a class="btn btn-large" onclick="window.location.href='<%= root_path %>'"><%= t(:cancel, :scope => [:common]) %></a>
+            </div> <%#= form-actions %>
+          </fieldset>
+        <% end %>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>
