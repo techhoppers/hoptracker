@@ -11,7 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140816234419) do
+ActiveRecord::Schema.define(:version => 20140819174157) do
+
+  create_table "issues", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "milestone_id"
+    t.string   "title",                :null => false
+    t.text     "description"
+    t.text     "acceptence_criteria"
+    t.string   "issue_type"
+    t.integer  "assigned_to"
+    t.integer  "estimate"
+    t.integer  "percentage_completed"
+    t.integer  "created_by"
+    t.datetime "start_date"
+    t.datetime "closed_date"
+    t.string   "priority"
+    t.string   "status"
+    t.string   "code",                 :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "issues", ["code"], :name => "index_issues_on_code", :unique => true
+  add_index "issues", ["title"], :name => "index_issues_on_title"
+
+  create_table "milestones", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name",        :null => false
+    t.string   "status"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "project_roles", :force => true do |t|
     t.integer  "project_id"

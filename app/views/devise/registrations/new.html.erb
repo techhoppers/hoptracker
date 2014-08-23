@@ -23,38 +23,38 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :username %>
+          <%= f.label :username, t(:username, :scope => [:account]) %>
           <%= f.text_field :username, autofocus: true, :class => "login", :placeholder => "Username", :required => "true" %>
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :first_name %>
+          <%= f.label :first_name, t(:first_name, :scope => [:account]) %>
           <%= f.text_field :first_name, autofocus: true, :class => "login", :placeholder => "First Name", :required => "true" %>
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :last_name %>
+          <%= f.label :last_name, t(:last_name, :scope => [:account])%>
           <%= f.text_field :last_name, :class => "login", :placeholder => "Last Name", :required => "true" %>
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :email, "Email Address" %>
+          <%= f.label :email, t(:email, :scope => [:account]) %>
           <%= f.email_field :email, :class => "login", :placeholder => "Email", :required => "true" %>
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :primary_phone %>
+          <%= f.label :primary_phone, t(:primary_phone, :scope => [:account]) %>
           <%= f.text_field :primary_phone, :class => "login", :placeholder => "Phone" %>
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :password %>
+          <%= f.label :password, t(:password, :scope => [:account]) %>
           <%= f.password_field :password, autocomplete: "off", :class => "login", :placeholder => "Password", :required => "true", "data-toggle" => "tooltip", "data-original-title" => "Minimum 8 Characters", "data-placement" => "right" %>
 
         </div> <%#= field %>
 
         <div class="field">
-          <%= f.label :password_confirmation, "Confirm Password" %>
+          <%= f.label :password_confirmation, , t(:confirm_password, :scope => [:account]) %>
           <%= f.password_field :password_confirmation, autocomplete: "off", :class => "login", :placeholder => "Confirm Password", :required => "true" %>
         </div> <%#= field %>
 

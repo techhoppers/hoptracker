@@ -10,13 +10,13 @@
 
       <div class="login-fields">
         <div class="field">
-          <%= f.label :password, "New password" %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => "login", :placeholder => "New Password"%>
+          <%= f.label :password, , t(:new_password, :scope => [:account]) %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => "login", :placeholder => , t(:new_password, :scope => [:account])%>
         </div> <%#= /field %>
 
         <div class="field">
-          <%= f.label :password_confirmation, "Confirm new password" %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", :class => "login", :placeholder => "Confirm Password" %>
+          <%= f.label :password_confirmation, , t(:confirm_password, :scope => [:account])%>
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => "login", :placeholder => , t(:confirm_password, :scope => [:account]) %>
         </div> <%#= /field %>
 
       </div> <%#= /login-fields %>

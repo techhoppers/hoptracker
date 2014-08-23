@@ -35,7 +35,7 @@
                     <td><%= index + 1 %></td>
                     <td><a data-name="role" data-pk="<%= project_role.id %>" data-type="text" href="#" class="editable editable-click" data-url="<%= project_role_path(@project, project_role) %>"><%= project_role.role %></a></td>
                     <td>
-                      <a class="msgbox-confirm" href="#" data-url="<%= delete_project_role_path(@project, project_role) %>"><%= text_with_icon(t(:delete, :scope => [:common]), "icon-remove") %></a>
+                      <a class="msgbox-confirm" confirm-message="<%= t(:confirm_role_deletion, :scope => [:roles]) %>" href="#" data-url="<%= delete_project_role_path(@project, project_role) %>"><%= text_with_icon(t(:delete, :scope => [:common]), "icon-remove") %></a>
     </td>
                   </tr>
                 <% end %>

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   layout "project", :except => [:new, :index, :create]
 
   def index
-
+   @projects = current_user.projects
   end
 
   def new

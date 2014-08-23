@@ -6,9 +6,11 @@ class Project < ActiveRecord::Base
   CLOSED = "CLOSED"
 
   # Associations
-  belongs_to :user
+  belongs_to :user, :dependent => :destroy
   has_many :project_users
   has_many :project_roles
+  has_many :milestones
+  has_many :issues
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :title, :description, :code, :status

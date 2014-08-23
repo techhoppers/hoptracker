@@ -15,11 +15,15 @@ IssueTracker::Application.routes.draw do
     resources :roles do
       get 'delete', :on => :member
     end
+    resources :milestones
+    resources :issues
   end
    
   # Admin Urls
   match 'admin/projects' => 'admin#projects', :as => :admin_projects
   match 'admin/users' => "admin#users", :as => :admin_users
+
+  match '/browse/:code' => "issues#show", :as => :issue
 
   root :to => 'home#index'
 

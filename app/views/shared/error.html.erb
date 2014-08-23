@@ -1,0 +1,28 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="error-container">
+          <h1><%= t(:oops, :scope => [:errors]) %></h1>
+          <h2><%= status %></h2>
+          <div class="error-details">
+            <%= message %>
+          </div> <%#= /error-details %>
+          <div class="error-actions">
+            <a class="btn btn-large btn-primary" href="<%= root_path %>">
+              <i class="icon-chevron-left"></i>
+              &nbsp;
+              <%= t(:back_dashboard, :scope => [:errors]) %>
+            </a>
+
+            <a class="btn btn-large" href="<%= root_path %>">
+              <i class="icon-envelope"></i>
+              &nbsp;
+		<%= t(:contact_support, :scope => [:errors]) %>
+            </a>
+          </div> <%#= /error-actions %>
+        </div> <%#= /.error-container %>
+      </div> <%#= /.span12 %>
+    </div> <%#= /.row %>
+  </div> <%#= /.container %>
+</div>

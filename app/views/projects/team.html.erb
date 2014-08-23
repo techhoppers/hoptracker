@@ -28,14 +28,14 @@
 
             <li>
               <div>
-                <a class="gallery-close msgbox-confirm" href="#" data-url="<%= delete_member_project_path(@project, :project_user_id => project_user.id) %>" title="<%= t(:remove_member, :scope => [:projects]) %>"><%= image_tag("close.png") %></a>
+                <a class="gallery-close msgbox-confirm" href="#" confirm-message="<%= t(:confirm_member_deletion, :scope => [:projects]) %>" data-url="<%= delete_member_project_path(@project, :project_user_id => project_user.id) %>" title="<%= t(:remove_member, :scope => [:projects]) %>"><%= image_tag("close.png") %></a>
                 <a class="ui-lightbox" href="<%=  user.avatar.url %>">
                   <%= image_tag user.avatar.url(:medium) %>
                 </a>
               </div>
               <br />
               <strong><%= link_to user.name, user_path(user) %></strong> <br />
-              <a data-name="role" data-value="<%= project_user.project_role_id %>" data-source="<%= roles.to_json %>" data-pk="<%= project_user.id %>" data-type="select" href="#" class="editable editable-click" data-url="<%= update_member_project_path(@project) %>" data-mode="popup"><%= project_role.role %></a>
+              <a data-name="role" data-value="<%= project_user.project_role_id %>" data-source="<%= roles.to_json %>" data-pk="<%= project_user.id %>" data-type="select" href="#" class="editable editable-click" data-url="<%= update_member_project_path(@project) %>" data-mode="popup"><%= project_role.role rescue nil %></a>
             </li>
           <% end %>
         </ul>

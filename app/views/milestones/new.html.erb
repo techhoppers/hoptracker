@@ -1,0 +1,65 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+
+        <h2><%= t(:create_milestone, :scope => [:milestones]) %></h2>
+        <br />
+        <%= form_for(@milestone, :url => project_milestones_path(@project), :html => { :method => :post, :class => "form-horizontal"}) do |f| %>
+          <fieldset>
+
+            <%#= Error Messages %>
+            <% if @milestone.errors.any? %>
+              <div class="alert alert-danger alert-error">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <ul>
+                  <% @milestone.errors.full_messages.uniq.each do |message| %>
+                    <li> <%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+
+            <hr />
+            <div class="control-group">
+              <%= f.label :start_date, t(:start_date, :scope => [:milestones, :milestone_form]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :start_date, :class => "input-large datePicker" %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+            <div class="control-group">
+              <%= f.label :end_date, t(:end_date, :scope => [:milestones, :milestone_form]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :end_date, :class => "input-large datePicker" %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+            <div class="control-group">
+              <%= f.label :name, t(:name, :scope => [:milestones, :milestone_form]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :name, :class => "input-largest" %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+            <div class="control-group">
+              <%= f.label :description, t(:description, :scope => [:milestones, :milestone_form]), :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_area :description, :class => "textEditor" %>
+              </div> <%#= controls %>
+            </div> <%#= control-group %>
+
+            <br/>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-large"><%= t(:create, :scope => [:common]) %></button>
+              <a class="btn btn-large" onclick="window.location.href='<%= project_milestones_path(@project) %>'"><%= t(:cancel, :scope => [:common]) %></a>
+            </div> <%#= form-actions %>
+          </fieldset>
+        <% end %>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

@@ -53,7 +53,8 @@ $(function () {
 
     $(document).on('click', '.msgbox-confirm', function (e) {
         var url = $(this).attr("data-url");
-        $.msgbox("Are you sure that you want to permanently remove the selected item?", {
+        var confirm_msg = $(this).attr("confirm-message");
+        $.msgbox(confirm_msg, {
             type: "confirm",
             buttons : [
             {
@@ -114,6 +115,13 @@ $(function () {
         });
     }, 500);
 	
-        
+
+    $(".datePicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "2000:2050",
+        dateFormat: "yy-mm-dd"
+    });
+
 
 });

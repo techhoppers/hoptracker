@@ -1,0 +1,23 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+
+        <table class="table profile_info">
+          <tbody>
+            <tr>
+              <td colspan="4"><h2><%= @issue.title %></h2></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:username, :scope => [:account]) %></strong>: <%= @issue.priority %></td>
+              <td><strong><%= t(:username, :scope => [:account]) %></strong></td>
+              <td><%= @issue.priority %></td>
+            </tr>
+           
+          </tbody>
+        </table>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

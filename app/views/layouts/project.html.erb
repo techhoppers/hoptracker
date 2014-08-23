@@ -62,8 +62,11 @@
               <li class="<%= @tab == :team ? "active" : "" %>">
                 <%= link_to nav_links_with_icon(t(:team, :scope => [:navigation]), "icon-user"), team_project_path(@project) %>
               </li>
-              <li>
-                <%= link_to nav_links_with_icon(t(:issues, :scope => [:navigation]), "icon-tasks") %>
+               <li class="<%= @tab == :milestones ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:milestones, :scope => [:milestones]), "icon-road"), project_milestones_path(@project) %>
+              </li>
+              <li class="<%= @tab == :issues ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:issues, :scope => [:navigation]), "icon-tasks"), project_issues_path(@project) %>
               </li>
               <li>
                 <%= link_to nav_links_with_icon(t(:wiki, :scope => [:navigation]), "icon-book") %>

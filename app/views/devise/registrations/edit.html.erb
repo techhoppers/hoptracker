@@ -42,14 +42,14 @@
             <h3><%= t(:profile_settings, :scope => [:account]) %></h3>
             <hr />
             <div class="control-group">
-              <%= f.label :username, :class => "control-label" %>
+              <%= f.label :username, t(:username, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :username, :class => "input-large-disabled", :disabled => true %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
             
             <div class="control-group">
-              <%= f.label :first_name, :class => "control-label" %>
+              <%= f.label :first_name, t(:first_name, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :first_name, :autofocus => true, :class => "input-large", :required => true %>
               </div> <%#= controls %>
@@ -57,7 +57,7 @@
 
 
             <div class="control-group">
-              <%= f.label :last_name, :class => "control-label" %>
+              <%= f.label :last_name, t(:last_name, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :last_name, :class => "input-large", :required => true %>
               </div> <%#= controls %>
@@ -72,49 +72,49 @@
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :primary_phone, :class => "control-label" %>
+              <%= f.label :primary_phone, t(:primary_phone, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :primary_phone, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :home_phone, :class => "control-label" %>
+              <%= f.label :home_phone, t(:home_phone, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :home_phone, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :work_phone, :class => "control-label" %>
+              <%= f.label :work_phone, t(:work_phone, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :work_phone, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :fax, :class => "control-label" %>
+              <%= f.label :fax, t(:fax, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :fax, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :city, :class => "control-label" %>
+              <%= f.label :city, t(:city, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :city, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :state, :class => "control-label" %>
+              <%= f.label :state, t(:state, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :state, :class => "input-large" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :country, :class => "control-label" %>
+              <%= f.label :country, t(:country, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.text_field :country, :class => "input-large" %>
               </div> <%#= controls %>
@@ -125,7 +125,7 @@
             <hr />
 
             <div class="control-group">
-              <%= f.label :password, :class => "control-label" %>
+              <%= f.label :password, t(:password, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.password_field :password, :class => "input-large", :autocomplete => "off" %>
               </div> <%#= controls %>
@@ -133,14 +133,14 @@
 
 
             <div class="control-group">
-              <%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %>
+              <%= f.label :password_confirmation, t(:confirm_password, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.password_field :password_confirmation, :class => "input-large", :autocomplete => "off" %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
-              <%= f.label :current_password, "Current Password", :class => "control-label" %>
+              <%= f.label :current_password, t(:current_password, :scope => [:account]), :class => "control-label" %>
               <div class="controls">
                 <%= f.password_field :current_password, :class => "input-large", :autocomplete => "off", :required => true %>
               </div> <%#= controls %>

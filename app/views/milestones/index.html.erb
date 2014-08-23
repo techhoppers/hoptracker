@@ -1,0 +1,51 @@
+<div id="content">
+
+  <div class="container">
+
+
+
+    <div class="row">
+
+
+
+      <div class="span12">
+        <div id="page-header">
+        <span style="font-size: 20px;"><%= t(:milestones, :scope => [:milestones]) %></span>
+            <ul class="nav nav-pills pull-right">
+              <li class="active"><%= link_to text_with_icon(t(:create_milestone, :scope => [:milestones]), "icon-plus"), new_project_milestone_path(@project) %></li>
+            </ul>
+        </div>
+        <br />
+        <hr />
+        <% unless @milestones.blank? %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th><%= t(:name, :scope => [:milestones]) %></th>
+                <th><%= t(:period, :scope => [:milestones]) %></th>
+                <th><%= t(:status, :scope => [:milestones]) %></th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @milestones.each do |milestone| %>
+                <tr>
+                  <td class="full"><%= milestone.name %></td>
+                  <td><%= fetch_period(milestone) %></td>
+                  <td><%= fetch_status(milestone) %></td>
+                  <td><%= link_to text_with_icon(t(:edit, :scope => [:common]), "icon-edit"), edit_project_milestone_path(@project, milestone) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <%= t(:milestones_empty, :scope => [:milestones]) %>
+        <% end %>
+      </div> <!-- /.span7 -->
+
+    </div> <!-- /.row -->
+
+  </div> <!-- /.container -->
+
+</div>

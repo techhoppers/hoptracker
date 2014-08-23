@@ -3,32 +3,35 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   unless Rails.application.config.consider_all_requests_local
-    rescue_from Exception,                            :with => :render_error
-    rescue_from ActiveRecord::RecordNotFound,         :with => :render_not_found
-    rescue_from ActionController::RoutingError,       :with => :render_not_found
-    rescue_from ActionController::UnknownController,  :with => :render_not_found
-    rescue_from ActionController::UnknownAction,      :with => :render_not_found
+    rescue_from Exception,                            :with => :render_500
+    rescue_from ActiveRecord::RecordNotFound,         :with => :render_404
+    rescue_from ActionController::RoutingError,       :with => :render_404
+    rescue_from ActionController::UnknownController,  :with => :render_404
+    rescue_from ActionController::UnknownAction,      :with => :render_404
   end
 
   protected
 
-   def render_not_found(exception = nil)
+   def render_404(exception = nil)
     respond_to do |format|
-      format.html { render :template => 'errors/not_found', :layout => 'error', :status => 404 }
+      format.html { render :template => 'shared/error', :layout => 'error',
+        :locals => {:status => 404, :message => t(:not_found, :scope => [:errors]) }}
       format.all { render :nothing => true, :status => 404 }
     end
   end
 
-  def render_error(exception)
+  def render_500(exception = nil)
     respond_to do |format|
-      format.html { render :template => 'errors/internal_server_error', :layout => 'error', :status => 500 }
+      format.html { render :template => 'shared/error', :layout => 'error',
+        :locals => {:status => 500, :message => t(:server_error, :scope => [:errors]) }}
       format.all { render :nothing => true, :status => 500}
     end
   end
 
     def render_401
     respond_to do |format|
-      format.html { render :template => 'errors/unauthorized', :layout => 'error', :status => 401 }
+      format.html { render :template => 'shared/error', :layout => 'error',
+        :locals => {:status => 401, :message => t(:unauthorized, :scope => [:errors]) }}
       format.all { render :nothing => true, :status => 401}
     end
   end

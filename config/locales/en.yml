@@ -30,6 +30,10 @@ en:
     work_phone: Work Phone
     fax: Fax
     username: Username
+    password: Password
+    confirm_password: Confirm Password
+    current_password: Current Password
+    new_password: New Password
   authentication:
     login:
       sign_in: Sign In
@@ -73,7 +77,8 @@ en:
     member_deletion_failed: Sorry! There was an error while deleting this member.
     wrong_username: The username you have specified doesn't exists
     member_creation_successfull: Member has been created successfully!
-    create_success: Project has been created successfully!    
+    create_success: Project has been created successfully!
+    confirm_member_deletion: Are you sure that you want to remove this member from team?
     statuses:
       in_progress: In Progress
       disabled: Inactive
@@ -87,6 +92,49 @@ en:
     role_creation_failed: Role creation failed! Please try again
     role_deletion_success: Role has been removed successfully!
     role_deletion_failed: Sorry! There is an error removing this role. Please try again!
+    confirm_role_deletion: Are you sure that you want to remove this role?
+  milestones:
+    milestones: Milestones
+    create_milestone: Create Milestone
+    name: Name
+    period: Period
+    status: Status
+    total_issues: Total Issues
+    completed_issues: Completed Issues
+    milestones_empty: No milestones are created for this project yet!
+    milestone_creation_success: Milestone created successfully!
+    milestone_creation_failed: Milestone creation failed!
+    milestone_updation_success: Milestone updated successfully!
+    milestone_updation_failed: Milestone updation failed!
+    milestone_form:
+      start_date: Start Date
+      end_date: End Date
+      name: Name
+      description: Description
+  issues:
+    create_issue: Create Issue
+    views: Views
+    issues_header: "%{project} - Issues"
+    thumbnail: Thumbnail
+    list: List
+    creation_success: Issue created successfully!
+    creation_failed: Sorry! Issue creation failed!
+    empty_issues: No issues are created for this project yet!
+    issue_form:
+      title: Title
+      issue_type: Issue Type
+      priority: Priority
+      milestone: Milestone
+      assigned_to: Assigned To
+      description: Description
+      acceptence_criteria: Acceptence Criteria
+  errors:
+    oops: Oops!
+    not_found: Sorry, the page you have requested is not found!
+    server_error: Sorry, an error has occurred while loading this page!
+    unauthorized: Sorry, you are not authorized to access this page!
+    back_dashboard: Back to Dashboard
+    contact_support: Contact Support
 
 
 
