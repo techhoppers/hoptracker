@@ -87,19 +87,9 @@
 
     </div> <!-- /#wrapper -->
 
-    <div id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="span6">
-            © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
-          </div> <!-- /span6 -->
-          <div id="builtby" class="span6">
-            <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
-          </div> <!-- /.span6 -->
-        </div> <!-- /row -->
-      </div> <!-- /container -->
-    </div> <!-- /#footer -->
+    <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application" %>
+    <%= render "shared/javascripts" %>
   </body>
 </html>

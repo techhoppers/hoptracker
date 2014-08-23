@@ -11,13 +11,15 @@
           <span style="font-size: 20px;"><%= t(:issues_header, :scope => [:issues], :project => @project.title) %></span>
 
           <ul class="nav nav-pills pull-right">
+            <!--
             <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= text_with_icon(t(:views, :scope => [:issues]), "icon-eye-open") %><b class="caret"></b></a>
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%#= text_with_icon(t(:views, :scope => [:issues]), "icon-eye-open") %><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href=""><%= text_with_icon(t(:thumbnail, :scope => [:issues]), "icon-th") %></a></li>
-                <li><a href=""><%= text_with_icon(t(:list, :scope => [:issues]), "icon-list") %></a></li>
+                <li><a href=""><%#= text_with_icon(t(:thumbnail, :scope => [:issues]), "icon-th") %></a></li>
+                <li><a href=""><%#= text_with_icon(t(:list, :scope => [:issues]), "icon-list") %></a></li>
               </ul>
             </li>
+            -->
             <li class="active"><%= link_to text_with_icon(t(:create_issue, :scope => [:issues]), "icon-plus"), new_project_issue_path(@project) %></li>
 
           </ul>

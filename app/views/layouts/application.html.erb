@@ -61,12 +61,14 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <% current_user.fetch_projects.each do |project| %>
-                    <li><%= show_project_link_with_icon(project) %></li>
+                  <% unless @user_projects.blank? %>
+                    <% @user_projects.each do |project| %>
+                      <li><%= show_project_link_with_icon(project) %></li>
+                    <% end %>
+                    <li class="divider"></li>
+                    <li><%= link_to nav_links_with_icon(t(:view_all, :scope => [:common]), "icon-list"), projects_path %></li>
+                    <li class="divider"></li>
                   <% end %>
-                  <li class="divider"></li>
-                  <li><%= link_to nav_links_with_icon(t(:view_all, :scope => [:common]), "icon-list"), projects_path %></li>
-                  <li class="divider"></li>
                   <li><%= link_to nav_links_with_icon(t(:create_project, :scope => [:navigation]), "icon-plus"), new_project_path %></li>
                 </ul>
               </li>
@@ -99,20 +101,10 @@
 
     </div> <%#= /#wrapper %>
 
-    <div id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="span6">
-            © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
-          </div> <%#= /span6 %>
-          <div id="builtby" class="span6">
-            <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
-          </div> <%#= /.span6 %>
-        </div> <%#= /row %>
-      </div> <%#= /container %>
-    </div> <%#= /#footer %>
+    <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application" %>
+    <%= render "shared/javascripts" %>
 
   </body>
 </html>

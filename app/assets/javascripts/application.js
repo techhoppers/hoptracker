@@ -28,6 +28,7 @@
 //= require jquery.hoverintent.min
 //= require jquery.lightbox
 //= require msgGrowl
+//= require humanize.min
 //= require jquery.msgbox.min
 //= require line
 //= require donut
@@ -122,6 +123,10 @@ $(function () {
         yearRange: "2000:2050",
         dateFormat: "yy-mm-dd"
     });
+
+   
+    
+	
 
 
 });

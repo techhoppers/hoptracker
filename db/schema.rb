@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20140819174157) do
     t.datetime "closed_date"
     t.string   "priority"
     t.string   "status"
-    t.string   "code",                 :null => false
+    t.string   "code"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end
@@ -58,9 +58,8 @@ ActiveRecord::Schema.define(:version => 20140819174157) do
     t.integer  "project_id"
     t.integer  "user_id"
     t.integer  "project_role_id"
-    t.boolean  "is_admin",        :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "projects", :force => true do |t|

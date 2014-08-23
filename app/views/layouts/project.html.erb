@@ -62,7 +62,7 @@
               <li class="<%= @tab == :team ? "active" : "" %>">
                 <%= link_to nav_links_with_icon(t(:team, :scope => [:navigation]), "icon-user"), team_project_path(@project) %>
               </li>
-               <li class="<%= @tab == :milestones ? "active" : "" %>">
+              <li class="<%= @tab == :milestones ? "active" : "" %>">
                 <%= link_to nav_links_with_icon(t(:milestones, :scope => [:milestones]), "icon-road"), project_milestones_path(@project) %>
               </li>
               <li class="<%= @tab == :issues ? "active" : "" %>">
@@ -79,25 +79,15 @@
 
       </div> <%#= /#header %>
       <div id="masthead"></div> <%#= /#masthead %>
-
+    
       <%= yield %>
 
     </div> <%#= /#wrapper %>
 
-    <div id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="span6">
-            © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
-          </div> <%#= /span6 %>
-          <div id="builtby" class="span6">
-            <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
-          </div> <%#= /.span6 %>
-        </div> <%#= /row %>
-      </div> <%#= /container %>
-    </div> <%#= /#footer %>
+    <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application" %>
-   
+    <%= render "shared/javascripts" %>
+
   </body>
 </html>

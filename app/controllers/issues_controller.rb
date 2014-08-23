@@ -24,6 +24,8 @@ class IssuesController < ApplicationController
       flash[:success] = t(:creation_success, :scope => [:issues])
       redirect_to project_issues_path(@project)
     else
+      @project_users = @project.project_users
+      @milestones = @project.milestones
       flash[:error]= t(:creation_failed, :scope => [:issues])
       render :action => :new
     end

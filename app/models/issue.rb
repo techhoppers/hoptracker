@@ -10,15 +10,19 @@ class Issue < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :milesstone
+
+  validates :title, :presence => true
+  validates :issue_type, :presence => true
+  validates :priority, :presence => true
   
- attr_accessible :title, :description, :acceptence_criteria, :priority,
+  attr_accessible :title, :description, :acceptence_criteria, :priority,
    :issue_type, :milestone_id, :assigned_to, :project_id, :status
 
- after_create :set_issue_code
+  after_create :set_issue_code
 
- def set_issue_code
+  def set_issue_code
    self.code = "#{self.project.code}-#{self.id}"
    self.save
- end
+  end
 
 end

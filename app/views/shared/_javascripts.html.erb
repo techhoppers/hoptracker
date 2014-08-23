@@ -1,0 +1,22 @@
+<%#= This page contains javascripts in which we need to use ruby codes  %>
+
+<%#= Code to show the growl messages for flash message %>
+
+<% flash.each do |key, value| %>
+  <div id="flashMessage" class="hide" data-key="<%= key %>" data-message="<%= value %>"></div>
+<% end %>
+<%#= Set flash to empty after use %>
+<% flash.discard  %>
+<script type="text/javascript">
+  $(function(){
+    if($("#flashMessage").length > 0 && $("#flashMessage").attr("data-key") != ""){
+      var title = $("#flashMessage").attr("data-key");
+      var message = $("#flashMessage").attr("data-message");
+      $.msgGrowl ({
+        type: title, 
+        title: Humanize.capitalize(title),
+        text: message
+      });
+    }
+  });
+</script>

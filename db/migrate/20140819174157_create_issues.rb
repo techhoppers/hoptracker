@@ -15,7 +15,7 @@ class CreateIssues < ActiveRecord::Migration
       t.datetime :closed_date
       t.string :priority
       t.string :status
-      t.string :code, :null => false
+      t.string :code
       t.timestamps
     end
     add_index :issues, :title

@@ -28,9 +28,5 @@ class User < ActiveRecord::Base
     projects.select([:id, :title]).order("CREATED_AT DESC").limit(5)
   end
 
-  def fetch_projects
-    projects = Project.where("user_id = #{self.id} or project_users.user_id = #{self.id}").joins(:project_user)
-    projects.uniq unless projects.blank?
-  end
 
 end

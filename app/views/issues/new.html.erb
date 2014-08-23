@@ -25,21 +25,21 @@
             <div class="control-group">
               <%= f.label :title, t(:title, :scope => [:issues, :issue_form]), :class => "control-label" %>
               <div class="controls">
-                <%= f.text_field :title, :class => "input-largest" %>
+                <%= f.text_field :title, :class => "input-largest", :required => true %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
               <%= f.label :issue_type, t(:issue_type, :scope => [:issues, :issue_form]), :class => "control-label" %>
               <div class="controls">
-                <%= f.select :issue_type,Issue::ISSUE_TYPES, :class => "input-large", :include_blank => true  %>
+                <%= f.select :issue_type,Issue::ISSUE_TYPES, {:class => "input-large",  :include_blank => true }, :required => true %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 
             <div class="control-group">
               <%= f.label :priority, t(:priority, :scope => [:issues, :issue_form]), :class => "control-label" %>
               <div class="controls">
-                <%= f.select :priority, Issue::PRIORITIES, :class => "input-large", :include_blank => true %>
+                <%= f.select :priority, Issue::PRIORITIES, {:class => "input-large", :include_blank => true}, :required => true %>
               </div> <%#= controls %>
             </div> <%#= control-group %>
 

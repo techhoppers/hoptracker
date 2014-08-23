@@ -47,9 +47,9 @@
       <div id="header">
         <div class="container">
           <%= link_to "Hoppers Tracker", root_path, :class => "brand" %>
-         <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
-        	<i class="icon-reorder"></i>
-      	</a>
+          <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
+            <i class="icon-reorder"></i>
+          </a>
           <div class="nav-collapse">
             <ul id="main-nav" class="nav pull-right">
               <li class="nav-icon active">
@@ -83,18 +83,7 @@
 
     </div> <%#= /#wrapper %>
 
-    <div id="footer">
-      <div class="container">
-        <div class="row">
-          <div class="span6">
-            © 2014 <a href="http://www.techhoppers.com">TechHoppers</a>, all rights reserved.
-          </div> <%#= /span6 %>
-          <div id="builtby" class="span6">
-            <a href="http://www.techhoppers.com">Built by TechHoppers.</a>
-          </div> <%#= /.span6 %>
-        </div> <%#= /row %>
-      </div> <%#= /container %>
-    </div> <%#= /#footer %>
+    <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application" %>
 
