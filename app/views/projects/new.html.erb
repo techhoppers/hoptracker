@@ -1,43 +1,20 @@
 <div id="content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
 
         <h2><%= t(:new_project, :scope => [:projects]) %></h2>
+
         <br />
         <%= form_for(@project, :url => projects_path, :html => { :method => :post, :class => "form-horizontal"}) do |f| %>
           <fieldset>
-
-
+            <%= render "shared/validation_error", :resource => @project %>
             <hr />
-            <div class="control-group">
-              <%= f.label :title, t(:title, :scope => [:projects]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :title, :class => "input-largest", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
+            <%= render "form", :f => f %>
 
-
-            <div class="control-group">
-              <%= f.label :code, t(:code, :scope => [:projects]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :code, :class => "input-largest", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-
-            <div class="control-group">
-              <%= f.label :description, t(:description, :scope => [:projects]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_area :description, :class => "textEditor" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <br/>
-
-            <div class="form-actions">
+            <div class="form-actions col-md-12">
               <button type="submit" class="btn btn-primary btn-large"><%= t(:create, :scope => [:common]) %></button>
-              <a class="btn btn-large" onclick="window.location.href='<%= root_path %>'"><%= t(:cancel, :scope => [:common]) %></a>
+              <button type="button" class="btn btn-default btn-large" onclick="window.location.href='<%= root_path %>'"><%= t(:cancel, :scope => [:common]) %></button>
             </div> <%#= form-actions %>
           </fieldset>
         <% end %>

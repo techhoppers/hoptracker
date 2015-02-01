@@ -18,58 +18,38 @@
   <body>
     <div id="wrapper">
 
-      <div id="topbar">
-
-        <div class="container">
-
-          <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-            <i class="icon-cog"></i>
-          </a>
-
-          <div id="top-nav">
-            <% if current_user.is_admin %>
-              <ul>
-                <li><%= link_to "Admin", admin_projects_path %></li>
-              </ul>
-            <% end %>
-            <ul class="pull-right">
-              <li><%= link_to text_with_icon(current_user.name, "icon-user"), user_path(current_user) %></li>
-              <li><%= link_to text_with_icon(t(:settings, :scope => [:common]), "icon-cog"), edit_user_registration_path(current_user) %></li>
-              <li><%= link_to text_with_icon(t(:logout, :scope => [:authentication, :login]), "icon-off"), destroy_user_session_path, :method => :delete %></li>
-            </ul>
-
-          </div> <%#= /#top-nav %>
-        </div> <%#= /.container %>
-      </div> <%#= /#topbar %>
+      <%= render "shared/topbar" %>
 
       <div id="header">
         <div class="container">
           <%= link_to "Hoppers Tracker", root_path, :class => "brand" %>
           <a data-target=".nav-collapse" data-toggle="collapse" class="btn-navbar" href="javascript:;">
-            <i class="icon-reorder"></i>
+            <i class="<%= ICON_REORDER %>"></i>
           </a>
           <div class="nav-collapse">
             <ul id="main-nav" class="nav pull-right">
               <li class="nav-icon">
-                <%= link_to nav_links_with_icon("Home", "icon-home"), root_path %>
+                <%= link_to nav_links_with_icon("Home", ICON_HOME), root_path %>
               </li>
               <li class="<%= @tab == :show ? "active" : "" %>">
-                <%= link_to nav_links_with_icon(t(:dashboard, :scope => [:navigation]), "icon-leaf"), project_path(@project) %>
+                <%= link_to nav_links_with_icon(t(:dashboard, :scope => [:navigation]), ICON_DASHBOARD), project_path(@project) %>
               </li>
-              <li class="<%= @tab == :roles ? "active" : "" %>">
-                <%= link_to nav_links_with_icon(t(:roles, :scope => [:navigation]), "icon-certificate"), project_roles_path(@project) %>
-              </li>
+              <% if current_user.has_admin_access(@project) %>
+                <li class="<%= @tab == :roles ? "active" : "" %>">
+                  <%= link_to nav_links_with_icon(t(:roles, :scope => [:navigation]), ICON_CERTIFICATE), project_roles_path(@project) %>
+                </li>
+              <% end %>
               <li class="<%= @tab == :team ? "active" : "" %>">
-                <%= link_to nav_links_with_icon(t(:team, :scope => [:navigation]), "icon-user"), team_project_path(@project) %>
+                <%= link_to nav_links_with_icon(t(:team, :scope => [:navigation]), ICON_GROUP), team_project_path(@project) %>
               </li>
               <li class="<%= @tab == :milestones ? "active" : "" %>">
-                <%= link_to nav_links_with_icon(t(:milestones, :scope => [:milestones]), "icon-road"), project_milestones_path(@project) %>
+                <%= link_to nav_links_with_icon(t(:milestones, :scope => [:milestones]), ICON_ROAD), project_milestones_path(@project) %>
               </li>
               <li class="<%= @tab == :issues ? "active" : "" %>">
-                <%= link_to nav_links_with_icon(t(:issues, :scope => [:navigation]), "icon-tasks"), project_issues_path(@project) %>
+                <%= link_to nav_links_with_icon(t(:issues, :scope => [:navigation]), ICON_TASKS), project_issues_path(@project) %>
               </li>
-              <li>
-                <%= link_to nav_links_with_icon(t(:wiki, :scope => [:navigation]), "icon-book") %>
+              <li class="<%= @tab == :wiki ? "active" : "" %>">
+                <%= link_to nav_links_with_icon(t(:wiki, :scope => [:navigation]), ICON_BOOK), project_project_wikis_path(@project) %>
               </li>
             </ul>
 
@@ -79,11 +59,10 @@
 
       </div> <%#= /#header %>
       <div id="masthead"></div> <%#= /#masthead %>
-    
+
       <%= yield %>
 
     </div> <%#= /#wrapper %>
-
     <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application" %>

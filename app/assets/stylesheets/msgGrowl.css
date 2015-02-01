@@ -86,3 +86,11 @@
 .msgGrowl.warning .msgGrowl-content { background: url(growl/msgGrowl_warning.png) no-repeat 10px 13px; }
 .msgGrowl.warning .msgGrowl-content { padding-left: 50px; }
 .msgGrowl.warning h4 { color: #B69201; }
+
+.msgGrowl.alert .msgGrowl-content { background: url(growl/msgGrowl_error.png) no-repeat 10px 13px; }
+.msgGrowl.alert .msgGrowl-content { padding-left: 50px; }
+.msgGrowl.alert h4 { color: #AF4434; }
+
+.msgGrowl.notice .msgGrowl-content { background: url(growl/msgGrowl_info.png) no-repeat 10px 13px; }
+.msgGrowl.notice .msgGrowl-content { padding-left: 50px; }
+.msgGrowl.notice h4 { color: #316AB7; }

@@ -1,0 +1,18 @@
+<div class="col-md-3">
+  <h3><%= t(:summary, :scope => [:issues]) %></h3><br />
+  <form class="form-horizontal">
+    <table class="table profile_info">
+      <tbody>
+        <tr>
+          <td><strong><%= t(:milestone, :scope => [:issues]) %></strong> <%= select_tag "milestones", options_for_select(@project.milestones.collect{ |u| [u.name, u.id]}, @project.milestones.first) %></td>
+        </tr>
+        <tr>
+          <td><strong><%= t(:total_stories, :scope => [:issues]) %></strong> <%#= "N/A" %></td>
+        </tr>
+        <tr>
+          <td><strong><%= t(:completed_stories, :scope => [:issues]) %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

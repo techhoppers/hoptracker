@@ -18,13 +18,13 @@
 
         <div class="field">
           <%= f.label :username, t(:username, :scope => [:account]) %>
-          <%= f.text_field :username, autofocus: true, :class => "login username-field", :placeholder => , t(:username, :scope => [:account]), :required => "true" %>
+          <%= f.text_field :username, autofocus: true, :class => "login username-field", :placeholder => t(:username, :scope => [:account]), :required => "true" %>
 
         </div> <!-- /field -->
 
         <div class="field">
           <%= f.label :password, t(:password, :scope => [:account]) %>
-          <%= f.password_field :password, autocomplete: "off", :class => "login password-field", :placeholder => , t(:password, :scope => [:account]), :required => "true" %>
+          <%= f.password_field :password, autocomplete: "off", :class => "login password-field", :placeholder => t(:password, :scope => [:account]), :required => "true" %>
         </div> <!-- /password -->
 
       </div> <!-- /login-fields -->

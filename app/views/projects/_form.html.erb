@@ -1,0 +1,28 @@
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :title, t(:title, :scope => [:projects]) %>
+    <div class="controls">
+      <%= f.text_field :title, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :code, t(:code, :scope => [:projects]) %>
+    <div class="controls">
+      <%= f.text_field :code, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :description, t(:description, :scope => [:projects]) %>
+    <div class="controls">
+      <%= f.text_area :description, :class => "textEditor" %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<br/>

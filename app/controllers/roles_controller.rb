@@ -1,6 +1,8 @@
 class RolesController < ApplicationController
+  
 
   before_filter :set_project
+  before_filter :has_admin_rights
   layout "project"
 
   def index
@@ -41,7 +43,12 @@ class RolesController < ApplicationController
   private
 
   def set_project
-    @project = current_user.projects.find(params[:project_id])
+    @project = current_user.fetch_projects.find(params[:project_id])
+  end
 
+    def has_admin_rights
+    unless current_user.has_admin_access(@project)
+      render_401
+    end
   end
 end

@@ -1,23 +1,103 @@
 <div id="content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span9">
+      <div class="col-md-12">
+      <div>
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to text_with_icon(t(:edit, :scope => [:common]), ICON_EDIT), edit_project_issue_path(@project, @issue) %></li>
+          <li class="active"><%= link_to text_with_icon(t(:create_issue, :scope => [:issues]), ICON_PLUS), new_project_issue_path(@project) %></li>
+        </ul>
 
+      </div>
+      <br /> <br />
+      <hr />
+      <div class="col-md-9">
+        <h3><%= @issue.title %></h3>
         <table class="table profile_info">
           <tbody>
             <tr>
-              <td colspan="4"><h2><%= @issue.title %></h2></td>
+              <td><strong><%= t(:issue_type, :scope => [:issues, :issue_form]) %></strong>: <i class="<%=  get_issue_type_icon(@issue.issue_type) %>"></i> <%= @issue.issue_type.blank? ? "N/A" : @issue.issue_type.humanize%></td>
+              <td><strong><%= t(:priority, :scope => [:issues, :issue_form]) %></strong>: <span class="label <%= @issue.priority.downcase %>"><%= @issue.priority.blank? ? "N/A" : @issue.priority.humanize %></span></td>
+              <td><strong><%= t(:status, :scope => [:issues, :issue_form]) %></strong>: <%= @issue.status.blank? ? "N/A" : @issue.status.humanize %></td>
             </tr>
             <tr>
-              <td><strong><%= t(:username, :scope => [:account]) %></strong>: <%= @issue.priority %></td>
-              <td><strong><%= t(:username, :scope => [:account]) %></strong></td>
-              <td><%= @issue.priority %></td>
+              <td><strong><%= t(:reported_by, :scope => [:issues, :issue_form]) %></strong>: <%= show_user(@issue.reporter) %></td>
+              <td><strong><%= t(:assigned_to, :scope => [:issues, :issue_form]) %></strong>: <%= link_to text_with_icon(@issue.assignee.name, ICON_USER), user_path(@issue.assigned_to) rescue "N/A"  %></td>
+              <td><strong><%= t(:milestone, :scope => [:issues, :issue_form]) %></strong>: <%= @issue.milestone.blank? ? "N/A" : @issue.milestone.name %></td>
             </tr>
-           
+            <tr>
+              <td colspan="3">
+                <strong><%= t(:acceptence_criteria, :scope => [:issues, :issue_form]) %>:</strong><br/><br/>
+                <%= @issue.acceptence_criteria.html_safe %>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <strong><%= t(:description, :scope => [:issues, :issue_form]) %>:</strong><br/><br/>
+                <%= @issue.description.html_safe %>
+              </td>
+            </tr>
           </tbody>
         </table>
+        <hr/>
+        <h5><%= t(:comments, :scope => [:issues]) %></h5>
+        <%= form_for(@issue_comment, :url => project_issue_issue_comments_path(@project, @issue),  :html => { :method => :post, :class => "form-horizontal"}) do |f| %>
+          <table class="table profile_info">
+            <tbody>
 
-      </div> <%#= .span12 %>
+              <% @issue_comments.each do |issue_comment|
+                next if issue_comment.comment.blank?
+              %>
+                <tr>
+                  <td colspan="3">
+                    <div class="comment-info">
+                      <span class="pull-left user-info"><i>By <%= show_user(issue_comment.user) %> on <%= formatted_time(issue_comment.created_at) %> </i></span>
+                      <% if issue_comment.user == current_user %>
+                        <span class="pull-right"><%= link_to "<i class='#{ICON_TRASH}' title='#{t(:delete_comment, :scope => [:issues])}' data-toggle='tooltip'></i>".html_safe, project_issue_issue_comment_path(@project, @issue, issue_comment), data: { confirm: t(:is_sure, :scope => [:confirmation]) }, :method => :delete, :class => "msgbox-confirm" %></span>
+                      <% end %>
+                    </div>
+                    <br/>
+                    <div class="issue-comment">
+                      <%= issue_comment.comment.html_safe %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
+
+            <fieldset>
+              <tr>
+                <td colspan="3"><%= f.text_area :comment, :class => "textEditor" %><br />
+                  <button type="submit" class="btn btn-primary"><%= t(:add_comment, :scope => [:issues]) %></button>
+                </td>
+              </tr>
+            </fieldset>
+
+            </tbody>
+          </table>
+        <% end %>
+
+      </div> <%#= .col-md-9 %>
+      <div class="col-md-3">
+        <h3><%= t(:dates, :scope => [:issues]) %></h3>
+        <table class="table profile_info">
+          <tbody>
+             <tr>
+              <td><strong><%= t(:estimate, :scope => [:issues]) %></strong>: <%= @issue.estimate || "N/A" %></td>
+            </tr>
+             <tr>
+              <td><strong><%= t(:percent_complete, :scope => [:issues]) %></strong>: <%= @issue.percentage_completed || "N/A" %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:created_at, :scope => [:issues]) %></strong>: <%= formatted_date(@issue.created_at) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t(:updated_at, :scope => [:issues]) %></strong>: <%= formatted_date(@issue.updated_at) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
     </div> <%#= .row %>
   </div> <%#= .container %>
 </div> <%#= content %>

@@ -1,85 +1,23 @@
 <div id="content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
 
         <h2><%= t(:create_issue, :scope => [:issues]) %></h2>
         <br />
         <%= form_for(@issue, :url => project_issues_path(@project), :html => { :method => :post, :class => "form-horizontal"}) do |f| %>
           <fieldset>
 
-            <%#= Error Messages %>
-            <% if @issue.errors.any? %>
-              <div class="alert alert-danger alert-error">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <ul>
-                  <% @issue.errors.full_messages.uniq.each do |message| %>
-                    <li> <%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
+           <%= render "shared/validation_error", :resource => @issue %>
 
             <hr />
-            <div class="control-group">
-              <%= f.label :title, t(:title, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :title, :class => "input-largest", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :issue_type, t(:issue_type, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.select :issue_type,Issue::ISSUE_TYPES, {:class => "input-large",  :include_blank => true }, :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :priority, t(:priority, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.select :priority, Issue::PRIORITIES, {:class => "input-large", :include_blank => true}, :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-             <div class="control-group">
-              <%= f.label :milestone_id, t(:milestone, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.select :milestone_id, @milestones.map{|m| [m.name,m.id]}, :class => "input-large", :include_blank => true  %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :assigned_to, t(:assigned_to, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.select :assigned_to, @project_users.map{|m| [m.user.name,m.user.id]}, :class => "input-large", :include_blank => true  %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-           
-            <div class="control-group">
-              <%= f.label :description, t(:description, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_area :description, :class => "textEditor" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :acceptence_criteria, t(:acceptence_criteria, :scope => [:issues, :issue_form]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_area :acceptence_criteria, :class => "textEditor" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-           
-            
+           <%= render "form", :f => f %>
 
             <br/>
 
-            <div class="form-actions">
+            <div class="form-actions col-md-12">
               <button type="submit" class="btn btn-primary btn-large"><%= t(:create, :scope => [:common]) %></button>
-              <a class="btn btn-large" onclick="window.location.href='<%= project_issues_path(@project) %>'"><%= t(:cancel, :scope => [:common]) %></a>
+              <button type="button" class="btn btn-default btn-large" onclick="window.location.href='<%= project_issues_path(@project) %>'"><%= t(:cancel, :scope => [:common]) %></button>
             </div> <%#= form-actions %>
           </fieldset>
         <% end %>

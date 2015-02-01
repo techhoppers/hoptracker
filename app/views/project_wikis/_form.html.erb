@@ -1,0 +1,15 @@
+<div class="form-group">
+  <%= f.label :title, t(:title, :scope => [:project_wikis])%>
+  <div class="controls">
+    <%= f.text_field :title, :class => "form-control", :required => true %>
+  </div> <%#= controls %>
+</div> <%#= control-group %>
+
+<div class="form-group">
+  <%= f.label :body, t(:content, :scope => [:project_wikis]) %>
+  <div class="controls">
+    <%= f.text_area :body, :class => "textEditor" %>
+  </div> <%#= controls %>
+</div> <%#= control-group %>
+
+

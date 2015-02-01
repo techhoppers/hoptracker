@@ -1,6 +1,6 @@
 <div id="content">
 
-  <div class="container">
+  <div class="container-fluid">
 
 
 
@@ -8,23 +8,23 @@
 
 
 
-      <div class="span12">
+      <div class="col-md-12">
         <div id="page-header">
         <span style="font-size: 20px;"><%= t(:milestones, :scope => [:milestones]) %></span>
             <ul class="nav nav-pills pull-right">
-              <li class="active"><%= link_to text_with_icon(t(:create_milestone, :scope => [:milestones]), "icon-plus"), new_project_milestone_path(@project) %></li>
+              <li class="active"><%= link_to text_with_icon(t(:create_milestone, :scope => [:milestones]), ICON_PLUS), new_project_milestone_path(@project) %></li>
             </ul>
         </div>
         <br />
         <hr />
         <% unless @milestones.blank? %>
-          <table class="table">
+          <table class="table table-bordered table-striped table-highlight">
             <thead>
               <tr>
                 <th><%= t(:name, :scope => [:milestones]) %></th>
                 <th><%= t(:period, :scope => [:milestones]) %></th>
                 <th><%= t(:status, :scope => [:milestones]) %></th>
-                <th></th>
+                <th><%= t(:actions, :scope => [:milestones]) %></th>
               </tr>
             </thead>
 
@@ -34,7 +34,7 @@
                   <td class="full"><%= milestone.name %></td>
                   <td><%= fetch_period(milestone) %></td>
                   <td><%= fetch_status(milestone) %></td>
-                  <td><%= link_to text_with_icon(t(:edit, :scope => [:common]), "icon-edit"), edit_project_milestone_path(@project, milestone) %></td>
+                  <td><%= link_to text_with_icon(t(:edit, :scope => [:common]), ICON_EDIT), edit_project_milestone_path(@project, milestone) %></td>
                 </tr>
               <% end %>
             </tbody>

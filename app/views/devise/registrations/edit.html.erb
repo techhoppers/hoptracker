@@ -1,159 +1,171 @@
 <div id="content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span12">
+      <div class="col-md-12">
 
         <h2><%= t(:edit_account, :scope => [:authentication, :signup]) %></h2>
         <br />
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal",:multipart => true}) do |f| %>
-          <fieldset>
-            
-            <%#= Error Messages %>
-            <% if @user.errors.any? %>
-              <div class="alert alert-danger alert-error">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <ul>
-                  <% @user.errors.full_messages.uniq.each do |message| %>
-                    <li> <%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-            
-            <h3><%= t(:profile_picture, :scope => [:account]) %></h3>
-            <hr />
-            <% if @user.avatar %>
-              <div class="control-group">
-                <div class="controls">
-                  <a class="ui-lightbox" href="<%= @user.avatar.url %>">
-                    <%= image_tag @user.avatar.url(:medium) %>
-                  </a>
-                </div> <%#= controls %>
-              </div> <%#= control-group %>
-            <% end %>
 
-            <div class="control-group">
-              
+  <%#= Error Messages %>
+          <% if @user.errors.any? %>
+            <div class="alert alert-danger alert-error">
+              <a href="#" class="close" data-dismiss="alert">&times;</a>
+              <ul>
+                <% @user.errors.full_messages.uniq.each do |message| %>
+                  <li> <%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <section class="no-margin" id="profile_picture">
+            <h2><%= t(:profile_picture, :scope => [:account]) %></h2>
+            <div class="form-group">
+              <div class="controls">
+                <a class="ui-lightbox" href="<%= @user.avatar.url %>">
+                  <%= image_tag @user.avatar.url(:medium) %>
+                </a>
+              </div> <%#= controls %>
+            </div> <%#= form-group %>
+            <div class="form-group">
               <div class="controls">
                 <%= f.file_field :avatar %>
               </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <h3><%= t(:profile_settings, :scope => [:account]) %></h3>
-            <hr />
-            <div class="control-group">
-              <%= f.label :username, t(:username, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :username, :class => "input-large-disabled", :disabled => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-            
-            <div class="control-group">
-              <%= f.label :first_name, t(:first_name, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :first_name, :autofocus => true, :class => "input-large", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
+            </div> <%#= form-group %>
+          </section>
 
 
-            <div class="control-group">
-              <%= f.label :last_name, t(:last_name, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :last_name, :class => "input-large", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
+          <section  id="basic_details">
+            <h2><%= t(:profile_settings, :scope => [:account]) %></h2>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :username, t(:username, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :username, :class => "form-control", :disabled => true %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :first_name, t(:first_name, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :first_name, :autofocus => true, :class => "form-control", :required => true %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :last_name, t(:last_name, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :last_name, :class => "form-control", :required => true %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
 
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :email, t(:email, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.email_field :email, :class => "form-control", :required => true %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :primary_phone, t(:primary_phone, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :primary_phone, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :home_phone, t(:home_phone, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :home_phone, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :work_phone, t(:work_phone, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :work_phone, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :fax, t(:fax, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :fax, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :city, t(:city, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :city, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :state, t(:state, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :state, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :country, t(:country, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.text_field :country, :class => "form-control" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+          </section>
+          <div class="clear">&nbsp;</div>
+          <section id="profile_password">
+            <h2><%= t(:profile_password, :scope => [:account]) %></h2>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :current_password, t(:current_password, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.password_field :current_password, :class => "form-control", :autocomplete => "off", :required => true%>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :password, t(:password, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.password_field :password, :class => "form-control", :autocomplete => "off" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
+            <div class="col-md-4">
 
-            <div class="control-group">
-              <%= f.label :email, t(:email, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.email_field :email, :class => "input-large", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
+              <div class="form-group">
+                <%= f.label :password_confirmation, t(:confirm_password, :scope => [:account]) %>
+                <div class="controls">
+                  <%= f.password_field :password_confirmation, :class => "form-control", :autocomplete => "off" %>
+                </div> <%#= controls %>
+              </div> <%#= form-group %>
+            </div>
 
-            <div class="control-group">
-              <%= f.label :primary_phone, t(:primary_phone, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :primary_phone, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
+          </section>
+          <br/>
+          <div class="clear">&nbsp;</div>
 
-            <div class="control-group">
-              <%= f.label :home_phone, t(:home_phone, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :home_phone, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :work_phone, t(:work_phone, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :work_phone, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :fax, t(:fax, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :fax, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :city, t(:city, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :city, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :state, t(:state, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :state, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :country, t(:country, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.text_field :country, :class => "input-large" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-
-            <h3><%= t(:profile_password, :scope => [:account]) %></h3>
-            <hr />
-
-            <div class="control-group">
-              <%= f.label :password, t(:password, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.password_field :password, :class => "input-large", :autocomplete => "off" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-
-            <div class="control-group">
-              <%= f.label :password_confirmation, t(:confirm_password, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.password_field :password_confirmation, :class => "input-large", :autocomplete => "off" %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <div class="control-group">
-              <%= f.label :current_password, t(:current_password, :scope => [:account]), :class => "control-label" %>
-              <div class="controls">
-                <%= f.password_field :current_password, :class => "input-large", :autocomplete => "off", :required => true %>
-              </div> <%#= controls %>
-            </div> <%#= control-group %>
-
-            <br/>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary btn-large"><%= t(:save, :scope => [:common]) %></button>
-              <a class="btn btn-large" onclick="window.location.href='<%= root_path %>'"><%= t(:cancel, :scope => [:common]) %></a>
-              <%= link_to t(:delete_account, :scope => [:authentication, :signup]), registration_path(resource_name), data: { confirm: t(:is_sure, :scope => [:confirmation]) }, method: :delete, :class => "btn btn-danger btn-large" %>
-            </div> <%#= form-actions %>
-          </fieldset>
+          <div class="form-actions col-md-12">
+            <button type="submit" class="btn btn-primary btn-large"><%= t(:save, :scope => [:common]) %></button>
+            <button class="btn btn-default btn-large" onclick="window.location.href='<%= root_path %>'"><%= t(:cancel, :scope => [:common]) %></button>
+            <%= link_to t(:delete_account, :scope => [:authentication, :signup]), registration_path(resource_name), data: { confirm: t(:is_sure, :scope => [:confirmation]) }, method: :delete, :class => "btn btn-danger btn-large" %>
+          </div> <%#= form-actions %>
         <% end %>
 
       </div> <%#= .span12 %>

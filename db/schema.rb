@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140819174157) do
+ActiveRecord::Schema.define(:version => 20140826022323) do
+
+  create_table "issue_comments", :force => true do |t|
+    t.integer  "issue_id"
+    t.integer  "user_id"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "issues", :force => true do |t|
     t.integer  "project_id"
@@ -58,8 +66,19 @@ ActiveRecord::Schema.define(:version => 20140819174157) do
     t.integer  "project_id"
     t.integer  "user_id"
     t.integer  "project_role_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "is_admin",        :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "project_wikis", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "title"
+    t.integer  "modified_user_id"
+    t.text     "body"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "projects", :force => true do |t|

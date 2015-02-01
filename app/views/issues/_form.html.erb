@@ -1,0 +1,91 @@
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :title, t(:title, :scope => [:issues, :issue_form]) %>
+    <div class="controls">
+      <%= f.text_field :title, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :issue_type, t(:issue_type, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.select :issue_type,Issue::ISSUE_TYPES.map{|it| [it.humanize, it]}, {}, {:class => "form-control" }%>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :priority, t(:priority, :scope => [:issues, :issue_form]) %>
+    <div class="controls">
+      <%= f.select :priority, Issue::PRIORITIES.map{|it| [it.humanize, it]}, {}, {:class => "form-control"}%>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :status, t(:status, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.select :status, Issue::STATUSES.map{|it| [it.humanize, it]}, {}, {:class => "form-control"} %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+    <%= f.label :milestone_id, t(:milestone, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.select :milestone_id, @milestones.map{|m| [m.name,m.id]}, {}, {:class => "form-control"}  %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+    <%= f.label :assigned_to, t(:assigned_to, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.select :assigned_to, @project_users.map{|m| [m.user.name,m.user.id]}, {}, :class => "form-control" %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+    <%= f.label :estimate, "#{t(:estimate, :scope => [:issues])} (#{t(:days, :scope => [:issues])})"%>
+    <div class="controls">
+      <%= f.text_field :estimate, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-3">
+  <div class="form-group">
+    <%= f.label :percentage_completed, t(:percent_complete, :scope => [:issues]) %>
+    <div class="controls">
+      <%= f.text_field :percentage_completed, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :acceptence_criteria, t(:acceptence_criteria, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.text_area :acceptence_criteria, :class => "textEditor" %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :description, t(:description, :scope => [:issues, :issue_form])%>
+    <div class="controls">
+      <%= f.text_area :description, :class => "textEditor" %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+

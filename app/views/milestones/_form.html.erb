@@ -1,0 +1,44 @@
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :name, t(:name, :scope => [:milestones, :milestone_form]) %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "form-control", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :status, t(:status, :scope => [:milestones]) %>
+    <div class="controls">
+      <%= f.select :status, Milestone::STATUSES.map{|it| [it.humanize, it]}, {}, {:class => "form-control"} %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :start_date, t(:start_date, :scope => [:milestones, :milestone_form]) %>
+    <div class="controls">
+      <%= f.text_field :start_date, :class => "form-control datePicker", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :end_date, t(:end_date, :scope => [:milestones, :milestone_form])%>
+    <div class="controls">
+      <%= f.text_field :end_date, :class => "form-control datePicker", :required => true %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :description, t(:description, :scope => [:milestones, :milestone_form]) %>
+    <div class="controls">
+      <%= f.text_area :description, :class => "textEditor" %>
+    </div> <%#= controls %>
+  </div> <%#= form-group %>
+</div>

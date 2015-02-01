@@ -1,7 +1,9 @@
 class MilestonesController < ApplicationController
 
   before_filter :set_project
+  before_filter :has_member_rights
   before_filter :set_tab
+  
   layout "project"
 
   def index
@@ -39,12 +41,10 @@ class MilestonesController < ApplicationController
   end
 
 
-
-
   private
 
   def set_project
-    @project = current_user.projects.find(params[:project_id])
+    @project = current_user.fetch_projects.find(params[:project_id])
   end
 
   def set_tab

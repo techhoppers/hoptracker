@@ -10,26 +10,26 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery-1.7.2.min
+//= require jquery-2.1.1
 //= require jquery_ujs
-//= require jquery-ui.min
 //= require jquery.ui.touch-punch.min
-//= require bootstrap.min
+//= require autocomplete-rails
+//= require bootstrap
 //= require bootstrap-editable.min
-//= require trumbowyg.min
+//= require bootstrap-dialog.min
 //= require theme
 //= require charts
 //= require excanvas.min
+//= require jquery.sortable
 //= require jquery.flot
 //= require jquery.flot.pie
 //= require jquery.flot.orderBars
 //= require jquery.flot.tooltip.min
 //= require jquery.flot.resize
 //= require jquery.hoverintent.min
-//= require jquery.lightbox
 //= require msgGrowl
 //= require humanize.min
-//= require jquery.msgbox.min
+//= require summernote.min
 //= require line
 //= require donut
 
@@ -42,8 +42,6 @@ $(function () {
     };
     
     $('[data-toggle="tooltip"]').tooltip();
-
-    $('.textEditor').trumbowyg();
    
     $('.editable').editable({
         
@@ -55,29 +53,14 @@ $(function () {
     $(document).on('click', '.msgbox-confirm', function (e) {
         var url = $(this).attr("data-url");
         var confirm_msg = $(this).attr("confirm-message");
-        $.msgbox(confirm_msg, {
-            type: "confirm",
-            buttons : [
-            {
-                type: "submit",
-                value: "Yes"
-            },
-
-            {
-                type: "submit",
-                value: "No"
-            },
-
-            {
-                type: "cancel",
-                value: "Cancel"
-            }
-            ]
-        }, function(result) {
-            if(result == "Yes"){
-                window.location.href = url;
+        BootstrapDialog.confirm(confirm_msg, function(result){
+            if(result) {
+                 window.location.href = url;
+            }else {
+                return false
             }
         });
+        
     });
 
     $('.gallery-container > li').hoverIntent({
@@ -118,15 +101,18 @@ $(function () {
 	
 
     $(".datePicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "2000:2050",
-        dateFormat: "yy-mm-dd"
+        autoclose: true,
+        format: "yyyy-mm-dd"
     });
 
+    $(".textEditor").summernote({
+        height: 300
+    })
    
     
 	
-
+    $('.sortable').sortable({placeholderClass: 'issue'}).bind('sortupdate', function(){
+        console.log("hi")
+    });
 
 });

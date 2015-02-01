@@ -1,0 +1,29 @@
+<div id="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h2><%= t(:edit_wiki, :scope => [:project_wikis]) %></h2>
+        <br />
+        <%= form_for(@project_wiki, :url => project_project_wiki_path(@project), :html => { :method => :put, :class => "form-horizontal"}) do |f| %>
+          <fieldset>
+
+           <%= render "shared/validation_error", :resource => @project_wiki %>
+
+
+            <hr />
+           <%= render "form", :f => f %>
+
+            <br/>
+
+            <div class="form-actions col-md-12">
+              <button type="submit" class="btn btn-primary btn-large"><%= t(:update, :scope => [:common]) %></button>
+              <button class="btn btn-large btn-default" onclick="window.location.href='<%= project_project_wikis_path(@project) %>'"><%= t(:cancel, :scope => [:common]) %></button>
+            </div> <%#= form-actions %>
+          </fieldset>
+        <% end %>
+
+      </div> <%#= .span12 %>
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

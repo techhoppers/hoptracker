@@ -1,0 +1,22 @@
+<div class="col-md-3 margin-10">
+  <div class="issue-header <%= issue.priority.downcase %>">
+    <div class="issue-title">
+      <i class="<%=  get_issue_type_icon(issue.issue_type) %> issue_type_icon" title="<%=issue.issue_type.humanize%>" data-toggle='tooltip'></i>
+      <%= link_to issue.code, issue_path(issue.code), :title => issue.title, :"data-toggle" => "tooltip", :class => "#{issue.is_closed? ? 'strikeText' : ''}"  %>
+      <span style="position:absolute; right: 20px;"><%= link_to !issue.assignee.avatar.blank? ? image_tag(issue.assignee.avatar.url(:small)) : image_tag("/assets/no_photo_small.gif") , user_path(issue.assigned_to), :title => issue.username, :"data-toggle" => "tooltip" %></span>
+    </div> <!-- /issue-title -->
+  </div> <!-- /issue-header -->
+
+  <div class="issue-features">
+    <ul>
+      <li class="issue-summary"><%= truncate(issue.title, :length => 80) %></li>
+      <li><%= issue.status.humanize unless issue.status.blank? %>&nbsp;
+        <%= show_priority_icon(issue.priority) %>
+      </li>
+    </ul>
+  </div> <!-- /issue-features -->
+
+  <div class="issue-actions">
+  </div> <!-- /issue-actions -->
+
+</div> <!-- /issue-container -->

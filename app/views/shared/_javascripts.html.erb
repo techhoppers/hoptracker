@@ -2,7 +2,9 @@
 
 <%#= Code to show the growl messages for flash message %>
 
-<% flash.each do |key, value| %>
+<% flash.each do |key, value|
+key = (key == :notice  ? "success" : key)
+%>
   <div id="flashMessage" class="hide" data-key="<%= key %>" data-message="<%= value %>"></div>
 <% end %>
 <%#= Set flash to empty after use %>

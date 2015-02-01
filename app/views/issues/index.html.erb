@@ -1,69 +1,34 @@
 <div id="content">
-
-  <div class="container">
-
-
+  <div class="container-fluid">
     <div class="row">
-
-      <div class="span12">
-
+      <div class="col-md-12">
         <div id="page-header">
           <span style="font-size: 20px;"><%= t(:issues_header, :scope => [:issues], :project => @project.title) %></span>
-
           <ul class="nav nav-pills pull-right">
-            <!--
-            <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%#= text_with_icon(t(:views, :scope => [:issues]), "icon-eye-open") %><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href=""><%#= text_with_icon(t(:thumbnail, :scope => [:issues]), "icon-th") %></a></li>
-                <li><a href=""><%#= text_with_icon(t(:list, :scope => [:issues]), "icon-list") %></a></li>
-              </ul>
-            </li>
-            -->
-            <li class="active"><%= link_to text_with_icon(t(:create_issue, :scope => [:issues]), "icon-plus"), new_project_issue_path(@project) %></li>
-
+            <li><button type="button" class="btn <%= params[:list].blank? ? 'btn-primary' : 'btn-default' %>" onclick="window.location.href='<%= project_issues_path(@project) %>'"><%= show_icon(ICON_TH) %></button></li>
+            <li><button type="button" class="btn <%= !params[:list].blank? ? 'btn-primary' : 'btn-default' %>" onclick="window.location.href='<%= project_issues_path(@project, :list => "true") %>'"><%= show_icon(ICON_LIST) %></button></li>
+            <li><button type="button" class="btn btn-primary" onclick="window.location.href='<%= new_project_issue_path(@project) %>'"><%= text_with_icon(t(:create_issue, :scope => [:issues]), ICON_PLUS) %></button></li>
           </ul>
-
         </div> <!-- /#issue-header -->
         <br />
         <hr />
-
-        <div class="issue-column-4">
+        <div class="col-md-9 issue-column-4 sortable">
           <% unless @issues.blank? %>
             <% @issues.each do |issue| %>
-              <div class="issue-container">
-                <div class="issue">
-                  <div class="issue-header">
-                    <div class="issue-title"><%= link_to issue.code, issue_path(issue.code) %></div> <!-- /issue-title -->
-                  </div> <!-- /issue-header -->
-
-                  <div class="issue-features">
-                    <ul>
-                      <li class="issue-summary"><%= truncate(issue.title, :length => 130) %></li>
-                      <li><div class="pull-left issue-label">Assignee</div><%= link_to text_with_icon(current_user.name, "icon-user"), user_path(issue.assigned_to) %></li>
-                      <li><div class="pull-left issue-label">Status</div><%= text_with_icon("In Progress", "icon-tick") %></li>
-                    </ul>
-                  </div> <!-- /issue-features -->
-
-                  <div class="issue-actions">
-                  </div> <!-- /issue-actions -->
-
-                </div> <!-- /issue -->
-              </div> <!-- /issue-container -->
+              <% if params[:list] %>
+                <%= render "/issues/list", :issue => issue %>
+              <% else %>
+                <%= render "/issues/thumbnails", :issue => issue  %>
+              <% end %>
             <% end %>
           <% else %>
             <%= t(:empty_issues, :scope => [:issues]) %>
           <% end %>
-
         </div><!-- /issue-column-4 -->
 
-      </div> <!-- /.span12 -->
+        <%= render "/issues/summary" %>
 
-
-
+      </div>
     </div> <!-- /.row -->
-
-
   </div> <!-- /.container -->
-
 </div> <!-- /#content -->

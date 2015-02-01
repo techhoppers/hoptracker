@@ -10,13 +10,13 @@
           </div> <%#= /error-details %>
           <div class="error-actions">
             <a class="btn btn-large btn-primary" href="<%= root_path %>">
-              <i class="icon-chevron-left"></i>
+              <i class="<%= ICON_CHEVRON_LEFT %>"></i>
               &nbsp;
               <%= t(:back_dashboard, :scope => [:errors]) %>
             </a>
 
             <a class="btn btn-large" href="<%= root_path %>">
-              <i class="icon-envelope"></i>
+              <i class="<%= ICON_ENVELOPE %>"></i>
               &nbsp;
 		<%= t(:contact_support, :scope => [:errors]) %>
             </a>

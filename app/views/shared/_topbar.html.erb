@@ -1,0 +1,21 @@
+<div id="topbar">
+  <div class="container">
+    <a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+      <i class="<%= ICON_COG %>"></i>
+    </a>
+
+    <div id="top-nav">
+      <% if current_user.is_admin %>
+        <ul>
+          <li><%= link_to "Admin", admin_projects_path %></li>
+        </ul>
+      <% end %>
+      <ul class="pull-right">
+        <li><%= show_user(current_user) %></li>
+        <li><%= link_to text_with_icon("Settings", ICON_COG), edit_user_registration_path(current_user) %></li>
+        <li><%= link_to text_with_icon("Logout", ICON_POWER_OFF), destroy_user_session_path, :method => :delete %></li>
+      </ul>
+
+    </div> <%#= /#top-nav %>
+  </div> <%#= /.container %>
+</div> <%#= /#topbar %>

@@ -1,0 +1,25 @@
+<div id="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div>
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to text_with_icon(t(:edit, :scope => [:common]), ICON_EDIT), edit_project_project_wiki_path(@project, @project_wiki) %></li>
+          <li><%= link_to text_with_icon(t(:delete, :scope => [:common]), ICON_TRASH), project_project_wiki_path(@project, @project_wiki), :"data-confirm" => "Are you sure?" , :method => :delete %></li>
+          <li class="active"><%= link_to text_with_icon(t(:create_wiki, :scope => [:project_wikis]), ICON_PLUS), new_project_project_wiki_path(@project) %></li>
+
+        </ul>
+
+      </div>
+      <div class="col-md-12">
+        <h2><%= @project_wiki.title %></h2><br/>
+        <div class="wiki_summary">
+          <%= t(:wiki_summary, :scope => [:project_wikis], :create_date => formatted_time(@project_wiki.created_at), :user_link =>  show_user(@project_wiki.user)).html_safe %>
+           <%= t(:wiki_update_summary, :scope => [:project_wikis], :update_date => formatted_time(@project_wiki.updated_at), :user_link =>  show_user(@project_wiki.modified_user)).html_safe %>
+        </div>
+        <hr />
+        <%= @project_wiki.body.html_safe unless @project_wiki.body.blank?  %>
+      </div> <%#= .span12 %>
+
+    </div> <%#= .row %>
+  </div> <%#= .container %>
+</div> <%#= content %>

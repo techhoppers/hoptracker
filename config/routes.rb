@@ -12,11 +12,15 @@ IssueTracker::Application.routes.draw do
     post 'create_member', :on => :member
     get 'delete_member', :on => :member
     put 'update_member', :on => :member
+    get :autocomplete_user_username, :on => :collection
     resources :roles do
-      get 'delete', :on => :member
+      get 'delete', :on => :member      
     end
     resources :milestones
-    resources :issues
+    resources :issues do
+      resources :issue_comments
+    end
+    resources :project_wikis
   end
    
   # Admin Urls

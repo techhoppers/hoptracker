@@ -77,7 +77,11 @@ en:
     member_deletion_failed: Sorry! There was an error while deleting this member.
     wrong_username: The username you have specified doesn't exists
     member_creation_successfull: Member has been created successfully!
+    member_creation_failed: Member creation failed!
     create_success: Project has been created successfully!
+    create_failed: Project creation failed!
+    updation_success: Project has been updated successfully!
+    updation_failed: Project updation failed!
     confirm_member_deletion: Are you sure that you want to remove this member from team?
     statuses:
       in_progress: In Progress
@@ -99,6 +103,7 @@ en:
     name: Name
     period: Period
     status: Status
+    actions: Actions
     total_issues: Total Issues
     completed_issues: Completed Issues
     milestones_empty: No milestones are created for this project yet!
@@ -119,7 +124,22 @@ en:
     list: List
     creation_success: Issue created successfully!
     creation_failed: Sorry! Issue creation failed!
+    updation_success: Issue updated successfully!
+    updation_failed: Sorry! Issue updation failed!
     empty_issues: No issues are created for this project yet!
+    comments: Comments
+    add_comment: Add Comment
+    issue_comment_success: Comment Added Successfully
+    issue_comment_failed: Comment creation failed
+    delete_comment: Delete Comment
+    comment_deleteion_success: Comment deleted successfully!
+    dates: Dates
+    created_at: Created At
+    updated_at: Last Modified
+    estimate: Estimate
+    percent_complete: Percentage Completed
+    days: In Days
+    summary: Summary
     issue_form:
       title: Title
       issue_type: Issue Type
@@ -128,13 +148,32 @@ en:
       assigned_to: Assigned To
       description: Description
       acceptence_criteria: Acceptence Criteria
+      assigned_to: Assigned To
+  project_wikis:
+    title: Title
+    content: Content
+    creation_success: Wiki page created successfully!
+    creation_failed: Wiki page creation failed!
+    wiki_header: "%{project} - Wikis"
+    wiki_summary: "Created By %{user_link} on %{create_date}."
+    wiki_update_summary: "Last Modified By %{user_link} on %{update_date}."
+    create_wiki: Create Wiki
+    edit_wiki: Edit Wiki
+    empty_wikis: No wikis are created yet!
+    wiki_updation_success: Wiki updated successfully!
+    wiki_updation_failed: Wiki updation failed!
+    wiki_deletion_success: Wiki has been deleted successfully!
   errors:
     oops: Oops!
     not_found: Sorry, the page you have requested is not found!
+    not_found_title: 404 Page Not Found
     server_error: Sorry, an error has occurred while loading this page!
+    server_error_title: 500 Internal Server Error
     unauthorized: Sorry, you are not authorized to access this page!
+    unauthorized_title: 401 Unauthorized Access
     back_dashboard: Back to Dashboard
     contact_support: Contact Support
+
 
 
 

@@ -1,0 +1,69 @@
+<div id="content">
+
+  <div class="container-fluid">
+
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <div id="page-header">
+          <span style="font-size: 20px;"><%= t(:wiki_header, :scope => [:project_wikis], :project => @project.title) %></span>
+
+          <ul class="nav nav-pills pull-right">
+
+            <li class="active"><%= link_to text_with_icon(t(:create_wiki, :scope => [:project_wikis]), ICON_PLUS), new_project_project_wiki_path(@project) %></li>
+
+          </ul>
+
+        </div> <!-- /#issue-header -->
+        <br />
+        <hr />
+
+        <div class="issue-column-1">
+          <% unless @project_wikis.blank? %>
+            <% @project_wikis.each do |wiki| %>
+              <div class="issue-container">
+                <div class="issue">
+                  <div class="issue-header">
+
+                    <div class="issue-title" style="text-align: left;padding-left: 20px;">
+                      <%= link_to wiki.title, project_project_wiki_path(@project, wiki) %>
+                      
+                    </div> <!-- /issue-title -->
+                  </div> <!-- /issue-header -->
+
+                  <div class="issue-features">
+                    <ul>
+                      <li>
+                        <%= truncate(strip_tags(wiki.body), :length => 500) %>
+                      </li>
+                      <li>
+                          <%= t(:wiki_update_summary, :scope => [:project_wikis], :update_date => formatted_time(wiki.created_at), :user_link =>  show_user(wiki.modified_user || wiki.user)).html_safe %>
+                      </li>
+                    </ul>
+                  </div> <!-- /issue-features -->
+
+                  <div class="issue-actions">
+                  </div> <!-- /issue-actions -->
+
+                </div> <!-- /issue -->
+                <br />
+              </div> <!-- /issue-container -->
+            <% end %>
+          <% else %>
+            <%= t(:empty_wikis, :scope => [:project_wikis]) %>
+          <% end %>
+
+        </div><!-- /issue-column-4 -->
+
+      </div> <!-- /.span12 -->
+
+
+
+    </div> <!-- /.row -->
+
+
+  </div> <!-- /.container -->
+
+</div> <!-- /#content -->

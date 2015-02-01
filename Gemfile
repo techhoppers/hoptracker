@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'devise'
 gem "paperclip", "~> 4.1"
+gem 'rails3-jquery-autocomplete'
 
 
 # Gems used only for assets and not required

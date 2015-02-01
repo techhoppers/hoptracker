@@ -1,0 +1,11 @@
+<%#= Error Messages %>
+<% if resource.errors.any? %>
+  <div class="alert alert-danger alert-error">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <ul>
+      <% resource.errors.full_messages.uniq.each do |message| %>
+        <li> <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

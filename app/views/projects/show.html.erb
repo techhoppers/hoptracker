@@ -1,34 +1,28 @@
 <div id="content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span7">
-
+      <div class="col-md-6">
+        <h2><%= @project.title %></h2>
         <table class="table profile_info">
           <tbody>
+            
             <tr>
-              <td colspan="2"><h2><%= @project.title %></h2></td>
+              <td><strong><%= t(:code, :scope => [:projects]) %></strong>: <%= @project.code %></td>
             </tr>
             <tr>
-              <td><strong><%= t(:code, :scope => [:projects]) %></strong></td>
-              <td><%= @project.code %></td>
-            </tr>
-            <tr>
-              <td><strong><%= t(:status, :scope => [:projects]) %></strong></td>
-              <td><%= get_status(@project) || "N/A" %></td>
-            </tr>
-            <tr>
-              <td><strong><%= t(:created_by, :scope => [:projects]) %></strong></td>
-              <td><%= show_user(@project.user) || "N/A" %></td>
+              <td><strong><%= t(:status, :scope => [:projects]) %></strong>: <%= get_status(@project) || "N/A" %></td>
             </tr>
              <tr>
-              <td><strong><%= t(:description, :scope => [:projects]) %></strong></td>
-              <td><%= @project.description.html_safe || "N/A" %></td>
+              <td><strong><%= t(:description, :scope => [:projects]) %></strong>:
+                <br />
+               <%= @project.description.html_safe || "N/A" %></td>
             </tr>
            
           </tbody>
         </table>
+      </div> <%#= .col-md-12 %>
 
-      </div> <%#= .span12 %>
+        
     </div> <%#= .row %>
-  </div> <%#= .container %>
+  </div> <%#= .container-fluid %>
 </div> <%#= content %>
